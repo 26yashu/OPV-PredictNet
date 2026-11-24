@@ -1,0 +1,176 @@
+import json
+from typing import List, Optional
+from fastapi import APIRouter, Depends, HTTPException, Query, status
+from sqlalchemy.orm import Session
+
+from backend.app.api.deps import get_current_user
+from backend.app.db.session import get_db
+from backend.app.models.prediction import Prediction
+from backend.app.models.user import User
+from backend.app.schemas.prediction import (
+    MolecularAnalysisRequest,
+    MolecularAnalysisResponse,
+    PredictionRequest,
+    PredictionResponse,
+    PredictionHistoryResponse,
+    PredictionHistoryItem,
+)
+from backend.app.services.molecular import analyze_blend
+from backend.app.services.prediction import run_prediction_pipeline
+
+router = APIRouter()
+
+
+@router.post(
+    "/analyze",
+    response_model=MolecularAnalysisResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Compute 2D physicochemical descriptors using RDKit"
+)
+def analyze_molecules(payload: MolecularAnalysisRequest):
+    """Validate SMILES strings and calculate RDKit descriptors for donor and acceptor separately."""
+    try:
+        blend_data = analyze_blend(
+            donor_smiles=payload.donor_smiles,
+            acceptor_smiles=payload.acceptor_smiles,
+            donor_name=payload.donor_name or "Donor Material",
+            acceptor_name=payload.acceptor_name or "Acceptor Material",
+        )
+        return blend_data
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=str(e),
+        )
+
+
+@router.post(
+    "",
+    response_model=PredictionResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Run prediction pipeline or return model-unavailable state"
+)
+def create_prediction(
+    req: PredictionRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Submit donor and acceptor SMILES for OPV performance prediction.
+
+    If a validated model artifact is loaded, generates real predictions and persists the record to SQLite.
+    If no validated model exists, returns an explicit model_unavailable response without fabricating predictions.
+    """
+    try:
+        pipeline_result = run_prediction_pipeline(
+            donor_smiles=req.donor_smiles,
+            acceptor_smiles=req.acceptor_smiles,
+            donor_name=req.donor_name or "Donor Material",
+            acceptor_name=req.acceptor_name or "Acceptor Material",
+            device_parameters=req.device_parameters,
+        )
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=str(e),
+        )
+
+    # If genuine model predictions were generated, persist the record in SQLite
+    if pipeline_result.get("status") == "success" and pipeline_result.get("predictions"):
+        preds = pipeline_result["predictions"]
+        model_version_tag = pipeline_result.get("model_metadata", {}).get("version_tag", "v1.0.0")
+        # Ensure model version exists in model_versions table to satisfy Foreign Key & NOT NULL constraints
+        from backend.app.models.model_version import ModelVersion
+        existing_mv = db.query(ModelVersion).filter(ModelVersion.version_tag == model_version_tag).first()
+        if not existing_mv:
+            existing_mv = ModelVersion(
+                version_tag=model_version_tag,
+                model_name="OPV-PredictNet-RF",
+                algorithm=pipeline_result.get("model_metadata", {}).get("algorithm", "RandomForestRegressor"),
+                target_metrics="PCE,Voc,Jsc,FF",
+                artifact_path=str(model_version_tag),
+                is_active=True,
+            )
+            db.add(existing_mv)
+            db.commit()
+
+        persisted_version = existing_mv.version_tag
+
+        prediction_record = Prediction(
+            user_id=current_user.id,
+            input_method=req.input_method or "smiles",
+            donor_name=req.donor_name or "Donor Material",
+            donor_smiles=pipeline_result["donor"]["canonical_smiles"],
+            acceptor_name=req.acceptor_name or "Acceptor Material",
+            acceptor_smiles=pipeline_result["acceptor"]["canonical_smiles"],
+            device_parameters_json=json.dumps(req.device_parameters) if req.device_parameters else None,
+            predicted_pce=float(preds["pce_percent"]),
+            predicted_voc=float(preds["voc_volts"]) if preds.get("voc_volts") is not None else None,
+            predicted_jsc=float(preds["jsc_ma_cm2"]) if preds.get("jsc_ma_cm2") is not None else None,
+            predicted_ff=float(preds["fill_factor_percent"]) if preds.get("fill_factor_percent") is not None else None,
+            uncertainty_json=None,
+            model_version=persisted_version,
+        )
+        db.add(prediction_record)
+        db.commit()
+        db.refresh(prediction_record)
+
+        pipeline_result["id"] = prediction_record.id
+        pipeline_result["created_at"] = prediction_record.created_at
+
+    return pipeline_result
+
+
+@router.get(
+    "",
+    response_model=PredictionHistoryResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Retrieve authenticated user's prediction history"
+)
+def get_prediction_history(
+    limit: int = Query(default=20, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Retrieve historical prediction records belonging exclusively to the authenticated user."""
+    # Defensively resolve limit/offset if called directly as a Python function in tests
+    limit_val = limit if isinstance(limit, int) else getattr(limit, "default", 20)
+    offset_val = offset if isinstance(offset, int) else getattr(offset, "default", 0)
+
+    query = (
+        db.query(Prediction)
+        .filter(Prediction.user_id == current_user.id)
+        .order_by(Prediction.created_at.desc())
+    )
+    total = query.count()
+    items = query.offset(offset_val).limit(limit_val).all()
+
+    return PredictionHistoryResponse(
+        total=total,
+        items=[PredictionHistoryItem.model_validate(item) for item in items],
+    )
+
+
+@router.get(
+    "/{prediction_id}",
+    response_model=PredictionHistoryItem,
+    status_code=status.HTTP_200_OK,
+    summary="Retrieve single prediction record"
+)
+def get_prediction_by_id(
+    prediction_id: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Retrieve a specific prediction record owned by the authenticated user."""
+    item = (
+        db.query(Prediction)
+        .filter(Prediction.id == prediction_id, Prediction.user_id == current_user.id)
+        .first()
+    )
+    if not item:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Prediction record not found or access denied",
+        )
+    return PredictionHistoryItem.model_validate(item)
