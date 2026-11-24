@@ -48,7 +48,13 @@ class PredictionRequest(BaseModel):
     donor_name: Optional[str] = Field("Donor Material", description="Name of donor material")
     acceptor_name: Optional[str] = Field("Acceptor Material", description="Name of acceptor material")
     input_method: Optional[str] = Field("smiles", description="Input method: smiles, file_upload, or library_selection")
-    device_parameters: Optional[Dict[str, Any]] = Field(None, description="Fabrication conditions & device stack")
+    device_parameters: Optional[Dict[str, Any]] = Field(
+        None,
+        description=(
+            "Fabrication conditions & device stack. Note: Experimental processing parameters are "
+            "recorded for provenance but are not currently included in the 22-feature molecular descriptor model."
+        )
+    )
 
 
 class PredictionResponse(BaseModel):

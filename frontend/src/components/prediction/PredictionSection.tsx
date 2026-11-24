@@ -18,20 +18,20 @@ interface PredictionSectionProps {
 
 const PRESET_PAIRS = [
   {
-    name: 'P3HT Subunit / Benzothiadiazole Core',
-    donorName: '3-Hexylthiophene (P3HT Unit)',
+    name: 'P3HT Monomer Subunit / Benzothiadiazole (BT) Core',
+    donorName: '3-Hexylthiophene (P3HT Monomer Unit)',
     donorSmiles: 'CCCCCCc1cccs1',
-    acceptorName: '2,1,3-Benzothiadiazole (BT)',
+    acceptorName: '2,1,3-Benzothiadiazole (BT Core Fragment)',
     acceptorSmiles: 'c1ccc2nsnc2c1',
     ratio: '1:1',
     thickness: 100,
     solvent: 'Chlorobenzene',
   },
   {
-    name: 'PBDB-T (BDT-T) / ITIC (IDT Core)',
-    donorName: 'BDT-T Unit (PBDB-T Fragment)',
+    name: 'BDT-T Core Fragment / ITIC (IDT) Core Fragment',
+    donorName: 'BDT-T Core Fragment (PBDB-T Repeat Scaffold)',
     donorSmiles: 'c1sc(-c2cccs2)c2c1ccc1c2sc(-c2cccs2)c1',
-    acceptorName: 'Indacenodithiophene (IDT Core)',
+    acceptorName: 'Indacenodithiophene (IDT Core Scaffold)',
     acceptorSmiles: 'c1sc2c(c1)-c1cc3c4c(cc1C2)sc1c4sc(c1)-c3',
     ratio: '1:1.2',
     thickness: 110,
@@ -42,9 +42,9 @@ const PRESET_PAIRS = [
 export const PredictionSection: React.FC<PredictionSectionProps> = ({ authToken: propToken }) => {
   // Input states
   const [donorSmiles, setDonorSmiles] = useState('CCCCCCc1cccs1');
-  const [donorName, setDonorName] = useState('3-Hexylthiophene (P3HT Unit)');
+  const [donorName, setDonorName] = useState('3-Hexylthiophene (P3HT Monomer Unit)');
   const [acceptorSmiles, setAcceptorSmiles] = useState('c1ccc2nsnc2c1');
-  const [acceptorName, setAcceptorName] = useState('2,1,3-Benzothiadiazole (BT)');
+  const [acceptorName, setAcceptorName] = useState('2,1,3-Benzothiadiazole (BT Core Fragment)');
 
   // Device parameter states
   const [showDeviceParams, setShowDeviceParams] = useState(false);
@@ -221,7 +221,7 @@ export const PredictionSection: React.FC<PredictionSectionProps> = ({ authToken:
 
       {/* Preset Candidate Pairs */}
       <div className="preset-bar">
-        <span className="preset-label">Load Reference Pair:</span>
+        <span className="preset-label">Load Reference Pair (Monomer / Core Fragment Level):</span>
         {PRESET_PAIRS.map((pair, idx) => (
           <button
             key={idx}
@@ -233,6 +233,9 @@ export const PredictionSection: React.FC<PredictionSectionProps> = ({ authToken:
           </button>
         ))}
       </div>
+      <p style={{ margin: '-0.75rem 0 1.25rem', fontSize: '0.8rem', color: '#64748b' }}>
+        <em>Note: Presets represent monomer repeat units and central conjugated cores for descriptor calculation, not full polymer chains or bulk devices.</em>
+      </p>
 
       {/* Error Banner */}
       {errorMessage && (
@@ -249,22 +252,22 @@ export const PredictionSection: React.FC<PredictionSectionProps> = ({ authToken:
           <div className="chem-card donor-card">
             <div className="chem-card-header">
               <span className="role-badge donor">Donor Material</span>
-              <span className="role-sub">Electron Donor / Polymer / Small Molecule</span>
+              <span className="role-sub">Electron Donor • Monomer Unit / Core Fragment / Small Molecule</span>
             </div>
             <div className="chem-input-group">
-              <label className="input-label" htmlFor="donor-name-input">Donor Label</label>
+              <label className="input-label" htmlFor="donor-name-input">Donor Label (Monomer Unit or Small Molecule)</label>
               <input
                 id="donor-name-input"
                 type="text"
                 className="text-input"
                 value={donorName}
                 onChange={(e) => setDonorName(e.target.value)}
-                placeholder="e.g. 3-Hexylthiophene (P3HT Unit)"
+                placeholder="e.g. 3-Hexylthiophene (P3HT Monomer Unit)"
               />
             </div>
             <div className="chem-input-group">
               <label className="input-label" htmlFor="donor-smiles-input">
-                Donor SMILES <span className="req">*</span>
+                Donor SMILES (Monomer Unit or Molecular Structure) <span className="req">*</span>
               </label>
               <textarea
                 id="donor-smiles-input"
@@ -282,22 +285,22 @@ export const PredictionSection: React.FC<PredictionSectionProps> = ({ authToken:
           <div className="chem-card acceptor-card">
             <div className="chem-card-header">
               <span className="role-badge acceptor">Acceptor Material</span>
-              <span className="role-sub">Electron Acceptor / Non-Fullerene / Fullerene</span>
+              <span className="role-sub">Electron Acceptor • Small Molecule / NF-Acceptor Core Fragment</span>
             </div>
             <div className="chem-input-group">
-              <label className="input-label" htmlFor="acceptor-name-input">Acceptor Label</label>
+              <label className="input-label" htmlFor="acceptor-name-input">Acceptor Label (Small Molecule or Core Fragment)</label>
               <input
                 id="acceptor-name-input"
                 type="text"
                 className="text-input"
                 value={acceptorName}
                 onChange={(e) => setAcceptorName(e.target.value)}
-                placeholder="e.g. 2,1,3-Benzothiadiazole (BT)"
+                placeholder="e.g. 2,1,3-Benzothiadiazole (BT Core Fragment)"
               />
             </div>
             <div className="chem-input-group">
               <label className="input-label" htmlFor="acceptor-smiles-input">
-                Acceptor SMILES <span className="req">*</span>
+                Acceptor SMILES (Full Molecule or Core Fragment) <span className="req">*</span>
               </label>
               <textarea
                 id="acceptor-smiles-input"
@@ -324,7 +327,21 @@ export const PredictionSection: React.FC<PredictionSectionProps> = ({ authToken:
           </button>
 
           {showDeviceParams && (
-            <div className="device-params-grid">
+            <div className="device-params-container">
+              <div
+                style={{
+                  margin: '0.75rem 0',
+                  padding: '0.6rem 0.85rem',
+                  borderRadius: '6px',
+                  backgroundColor: 'rgba(30, 41, 59, 0.6)',
+                  border: '1px solid rgba(148, 163, 184, 0.2)',
+                  fontSize: '0.85rem',
+                  color: '#94a3b8',
+                }}
+              >
+                <strong style={{ color: '#38bdf8' }}>Scope Notice:</strong> Experimental processing parameters are recorded for provenance but are not currently included in the 22-feature molecular descriptor model.
+              </div>
+              <div className="device-params-grid">
               <div className="param-field">
                 <label className="input-label">D:A Weight Ratio</label>
                 <input
@@ -400,6 +417,7 @@ export const PredictionSection: React.FC<PredictionSectionProps> = ({ authToken:
                   max={120}
                 />
               </div>
+            </div>
             </div>
           )}
         </div>

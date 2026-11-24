@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 import tempfile
@@ -177,9 +178,30 @@ class TestPhase3MolecularAndInference(unittest.TestCase):
             model_file = temp_models_dir / "test_v1.0.0.joblib"
             joblib.dump(rf, model_file)
 
+            # Accompany with valid scientific certification metadata
+            meta_content = {
+                "version_tag": "test_v1.0.0",
+                "algorithm": "RandomForestRegressor",
+                "feature_names": FEATURE_NAMES,
+                "is_scientifically_validated": True,
+                "training_provenance": "Validated experimental peer-reviewed benchmark dataset",
+                "dataset_source": "https://doi.org/10.1038/s41524-021-00622-2",
+                "evaluation_metrics": {
+                    "r2": 0.75,
+                    "mae": 0.58,
+                    "rmse": 0.81,
+                    "pce_r2": 0.75,
+                    "pce_mae": 0.58,
+                    "pce_rmse": 0.81,
+                },
+            }
+            with open(temp_models_dir / "test_v1.0.0.meta.json", "w", encoding="utf-8") as f:
+                json.dump(meta_content, f)
+
             # Point a test registry to this temp directory
             test_registry = OPVModelRegistry(models_dir=temp_models_dir)
             self.assertTrue(test_registry.is_model_available())
+            self.assertTrue(test_registry.is_scientifically_validated())
 
             # Seed model_version row to satisfy FK
             mv = ModelVersion(
@@ -217,6 +239,45 @@ class TestPhase3MolecularAndInference(unittest.TestCase):
                 self.assertEqual(saved_record.user_id, self.user_a.id)
                 self.assertEqual(saved_record.donor_name, "DonorTest")
                 self.assertAlmostEqual(saved_record.predicted_pce, 12.5, delta=0.5)
+            finally:
+                pred_svc.model_registry = original_reg
+
+    def test_unvalidated_model_artifact_is_rejected(self):
+        """Verify unvalidated test fixtures or models without certification are rejected and write 0 DB records."""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            temp_models_dir = Path(temp_dir)
+            X_dummy = np.random.RandomState(42).randn(10, len(FEATURE_NAMES))
+            y_dummy = np.array([[12.5, 0.82, 21.0, 70.0]] * 10)
+            rf = RandomForestRegressor(n_estimators=5, random_state=42)
+            rf.fit(X_dummy, y_dummy)
+
+            # Dump model WITHOUT valid scientific certification
+            model_file = temp_models_dir / "unvalidated_fixture.joblib"
+            joblib.dump(rf, model_file)
+
+            test_registry = OPVModelRegistry(models_dir=temp_models_dir)
+            self.assertTrue(test_registry.is_model_available())
+            self.assertFalse(test_registry.is_scientifically_validated())
+
+            import backend.app.services.prediction as pred_svc
+            original_reg = pred_svc.model_registry
+            pred_svc.model_registry = test_registry
+
+            try:
+                initial_count = self.db.query(Prediction).count()
+                req = PredictionRequest(
+                    donor_smiles=self.valid_donor,
+                    acceptor_smiles=self.valid_acceptor,
+                    donor_name="DonorTest",
+                    acceptor_name="AccTest",
+                )
+                pred_resp = create_prediction(req, current_user=self.user_a, db=self.db)
+                self.assertEqual(pred_resp["status"], "model_unvalidated")
+                self.assertIsNone(pred_resp["predictions"])
+                self.assertIn("failed scientific validation", pred_resp["message"])
+                # Zero records written to database
+                final_count = self.db.query(Prediction).count()
+                self.assertEqual(final_count, initial_count)
             finally:
                 pred_svc.model_registry = original_reg
 

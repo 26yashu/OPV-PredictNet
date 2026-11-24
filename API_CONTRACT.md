@@ -154,6 +154,8 @@ Retrieve user profile and account details for the currently authenticated sessio
 
 ### 3.5 Prediction Pipeline Specification & Unified Normalization
 
+> **Scientific Provenance Notice**: Experimental processing parameters are recorded for provenance but are not currently included in the 22-feature molecular descriptor model.
+
 The prediction subsystem accepts candidates through three distinct entry points:
 1. **Direct SMILES**: Direct text string input of donor and acceptor canonical SMILES.
 2. **Molecular File Upload**: Upload of `.sdf`, `.mol`, or `.pdb` coordinate files.
@@ -186,6 +188,8 @@ Regardless of entry point, all requests are translated by the backend adapter in
 
 ### 3.6 POST `/predictions`
 Submit candidate materials and optional process conditions for performance prediction.
+
+*Note: Experimental processing parameters are recorded for provenance but are not currently included in the 22-feature molecular descriptor model.*
 
 - **Authentication**: `Bearer <access_token>`
 - **Request Headers**: `Content-Type: application/json`
