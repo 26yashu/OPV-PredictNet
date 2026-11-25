@@ -1,0 +1,176 @@
+{
+  "test_n": 946,
+  "point_metrics": {
+    "mae": 2.220222163095597,
+    "rmse": 2.9169562483142695,
+    "r2": 0.585921995384387
+  },
+  "methods": {
+    "unnormalized": {
+      "nominal_80": {
+        "nominal_coverage": 0.8,
+        "raw_intervals": {
+          "empirical_coverage": 0.7695560253699789,
+          "coverage_se": 0.013691695496445196,
+          "coverage_ci_95": [
+            0.7427203021969463,
+            0.7963917485430115
+          ],
+          "mean_width_PCE_pp": 6.511250714285726,
+          "median_width_PCE_pp": 6.511250714285728,
+          "winkler_score": 10.338330244351893,
+          "width_p10": 6.511250714285727,
+          "width_p25": 6.511250714285728,
+          "width_p75": 6.511250714285729,
+          "width_p90": 6.511250714285729
+        },
+        "clipped_intervals_diagnostic": {
+          "empirical_coverage": 0.7695560253699789,
+          "coverage_se": 0.013691695496445196,
+          "mean_width_PCE_pp": 6.405497398336825,
+          "median_width_PCE_pp": 6.511250714285728,
+          "winkler_score": 10.23257692840299,
+          "records_clipped_at_zero": 121,
+          "fraction_clipped": 0.12790697674418605
+        }
+      },
+      "nominal_90": {
+        "nominal_coverage": 0.9,
+        "raw_intervals": {
+          "empirical_coverage": 0.8911205073995772,
+          "coverage_se": 0.01012734710046701,
+          "coverage_ci_95": [
+            0.8712709070826619,
+            0.9109701077164924
+          ],
+          "mean_width_PCE_pp": 8.83718811188811,
+          "median_width_PCE_pp": 8.83718811188811,
+          "winkler_score": 12.794601320216708,
+          "width_p10": 8.83718811188811,
+          "width_p25": 8.83718811188811,
+          "width_p75": 8.83718811188811,
+          "width_p90": 8.83718811188811
+        },
+        "clipped_intervals_diagnostic": {
+          "empirical_coverage": 0.8911205073995772,
+          "coverage_se": 0.01012734710046701,
+          "mean_width_PCE_pp": 8.503034515089466,
+          "median_width_PCE_pp": 8.83718811188811,
+          "winkler_score": 12.460447723418064,
+          "records_clipped_at_zero": 258,
+          "fraction_clipped": 0.2727272727272727
+        }
+      },
+      "nominal_95": {
+        "nominal_coverage": 0.95,
+        "raw_intervals": {
+          "empirical_coverage": 0.9503171247357294,
+          "coverage_se": 0.007064673091352514,
+          "coverage_ci_95": [
+            0.9364703654766785,
+            0.9641638839947803
+          ],
+          "mean_width_PCE_pp": 11.40709298245615,
+          "median_width_PCE_pp": 11.407092982456149,
+          "winkler_score": 15.553796858147898,
+          "width_p10": 11.407092982456149,
+          "width_p25": 11.407092982456149,
+          "width_p75": 11.407092982456149,
+          "width_p90": 11.407092982456149
+        },
+        "clipped_intervals_diagnostic": {
+          "empirical_coverage": 0.9503171247357294,
+          "coverage_se": 0.007064673091352514,
+          "mean_width_PCE_pp": 10.618462489642454,
+          "median_width_PCE_pp": 11.407092982456149,
+          "winkler_score": 14.765166365334201,
+          "records_clipped_at_zero": 384,
+          "fraction_clipped": 0.4059196617336152
+        }
+      }
+    },
+    "locally_normalized": {
+      "nominal_80": {
+        "nominal_coverage": 0.8,
+        "raw_intervals": {
+          "empirical_coverage": 0.7621564482029598,
+          "coverage_se": 0.013842743982220549,
+          "coverage_ci_95": [
+            0.7350246699978076,
+            0.789288226408112
+          ],
+          "mean_width_PCE_pp": 6.85273537321773,
+          "median_width_PCE_pp": 6.479194654569297,
+          "winkler_score": 10.310788950578601,
+          "width_p10": 3.31658319750046,
+          "width_p25": 4.926232051224612,
+          "width_p75": 8.444327326948086,
+          "width_p90": 10.954462978278563
+        },
+        "clipped_intervals_diagnostic": {
+          "empirical_coverage": 0.7632135306553911,
+          "coverage_se": 0.013821523081625346,
+          "mean_width_PCE_pp": 6.76493096858632,
+          "median_width_PCE_pp": 6.42404476913581,
+          "winkler_score": 10.222984545947192,
+          "records_clipped_at_zero": 121,
+          "fraction_clipped": 0.12790697674418605
+        }
+      },
+      "nominal_90": {
+        "nominal_coverage": 0.9,
+        "raw_intervals": {
+          "empirical_coverage": 0.8773784355179705,
+          "coverage_se": 0.010664275011858553,
+          "coverage_ci_95": [
+            0.8564764564947277,
+            0.8982804145412132
+          ],
+          "mean_width_PCE_pp": 9.173234796892705,
+          "median_width_PCE_pp": 8.673204293489048,
+          "winkler_score": 13.155212490687939,
+          "width_p10": 4.439657266353083,
+          "width_p25": 6.5943715624090755,
+          "width_p75": 11.303777696517066,
+          "width_p90": 14.663905068675275
+        },
+        "clipped_intervals_diagnostic": {
+          "empirical_coverage": 0.8773784355179705,
+          "coverage_se": 0.010664275011858553,
+          "mean_width_PCE_pp": 8.809476819825305,
+          "median_width_PCE_pp": 8.358825242958446,
+          "winkler_score": 12.79145451362054,
+          "records_clipped_at_zero": 270,
+          "fraction_clipped": 0.2854122621564482
+        }
+      },
+      "nominal_95": {
+        "nominal_coverage": 0.95,
+        "raw_intervals": {
+          "empirical_coverage": 0.9365750528541226,
+          "coverage_se": 0.00792420644651551,
+          "coverage_ci_95": [
+            0.9210436082189521,
+            0.952106497489293
+          ],
+          "mean_width_PCE_pp": 11.923098484237435,
+          "median_width_PCE_pp": 11.273173668269123,
+          "winkler_score": 16.884297572945567,
+          "width_p10": 5.770534821687864,
+          "width_p25": 8.571168548622701,
+          "width_p75": 14.692314947084196,
+          "width_p90": 19.05970883428689
+        },
+        "clipped_intervals_diagnostic": {
+          "empirical_coverage": 0.9365750528541226,
+          "coverage_se": 0.00792420644651551,
+          "mean_width_PCE_pp": 10.962581185427599,
+          "median_width_PCE_pp": 10.318830519619265,
+          "winkler_score": 15.92378027413573,
+          "records_clipped_at_zero": 430,
+          "fraction_clipped": 0.45454545454545453
+        }
+      }
+    }
+  }
+}

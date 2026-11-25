@@ -1,0 +1,5 @@
+comparison,model_id,baseline_id,mean_ae_diff_pce,bootstrap_95ci_low,bootstrap_95ci_high,paired_ttest_stat,paired_ttest_pvalue,wilcoxon_stat,wilcoxon_pvalue,statistically_significant_05
+M1 vs M0,M1,M0,-0.1407,-0.1969,-0.0873,-4.9183,1.0292e-06,186063.0,6.5142e-06,True
+M2 vs M0,M2,M0,-0.1005,-0.155,-0.0456,-3.571,0.00037355,196910.0,0.0012882,True
+M2A vs M0,M2A,M0,-0.1039,-0.1528,-0.0526,-3.808,0.00014911,195697.0,0.00077131,True
+M3 vs M0,M3,M0,-0.1187,-0.1913,-0.0483,-3.0914,0.0020504,200357.0,0.0049769,True

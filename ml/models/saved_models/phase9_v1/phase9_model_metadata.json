@@ -1,0 +1,78 @@
+{
+  "phase": "Phase 9",
+  "packaging_script": "ml/scripts/package_models_phase9.py",
+  "governance_reference": "ml/PHASE_8_3_MODEL_GOVERNANCE.md",
+  "feature_pipeline": "ml/src/features/processing.py::UnifiedFeaturePipeline",
+  "research_estimate_only": true,
+  "validated_for_production": false,
+  "models": {
+    "M0": {
+      "artifact": "C:\\Users\\DELL\\OPV-PredictNet\\ml\\models\\saved_models\\phase9_v1\\phase9_M0_model.joblib",
+      "n_features": 22,
+      "algorithm": "RandomForestRegressor",
+      "conformal_quantiles_90pct": 4.6503
+    },
+    "M1": {
+      "artifact": "C:\\Users\\DELL\\OPV-PredictNet\\ml\\models\\saved_models\\phase9_v1\\phase9_M1_model.joblib",
+      "n_features": 50,
+      "algorithm": "RandomForestRegressor",
+      "conformal_quantiles_90pct": 4.2726
+    },
+    "M2A": {
+      "artifact": "C:\\Users\\DELL\\OPV-PredictNet\\ml\\models\\saved_models\\phase9_v1\\phase9_M2A_model.joblib",
+      "n_features": 37,
+      "algorithm": "RandomForestRegressor",
+      "conformal_quantiles_90pct": 4.323
+    },
+    "M3": {
+      "artifact": "C:\\Users\\DELL\\OPV-PredictNet\\ml\\models\\saved_models\\phase9_v1\\phase9_M3_model.joblib",
+      "n_features": 44,
+      "algorithm": "HistGradientBoostingRegressor",
+      "conformal_quantiles_90pct": 4.1624
+    }
+  },
+  "dataset": {
+    "path": "C:\\Users\\DELL\\OPV-PredictNet\\ml\\data\\raw\\extracted_opvdb_v1.1.0\\data\\opv_devices_strict_molecular_benchmark.csv",
+    "sha256": "ffbcd6e9dc60f94d7bce037b8fba8c0e23e503b5a32047e76d40de1027bc3897",
+    "n_records": 22467
+  },
+  "scaffold_registry": "C:\\Users\\DELL\\OPV-PredictNet\\ml\\models\\saved_models\\phase9_v1\\phase9_scaffold_registry.json",
+  "pipeline_state": "C:\\Users\\DELL\\OPV-PredictNet\\ml\\models\\saved_models\\phase9_v1\\phase9_pipeline_state.json",
+  "determinism_verified": true,
+  "calibration": {
+    "strategy": "Phase 8.5 Strategy C2",
+    "n_cal": 3863,
+    "levels": [
+      "80%",
+      "90%",
+      "95%"
+    ],
+    "quantiles": {
+      "M0": {
+        "80%": 3.373,
+        "90%": 4.6503,
+        "95%": 6.2258
+      },
+      "M1": {
+        "80%": 3.2106,
+        "90%": 4.2726,
+        "95%": 5.5214
+      },
+      "M2A": {
+        "80%": 3.2626,
+        "90%": 4.323,
+        "95%": 5.5246
+      },
+      "M3": {
+        "80%": 3.1379,
+        "90%": 4.1624,
+        "95%": 5.2954
+      }
+    }
+  },
+  "ood_policy": {
+    "novel_donor_scaffold": "warn",
+    "novel_acceptor_scaffold": "warn",
+    "novel_dual_scaffold": "reject_or_strong_warn"
+  }
+}

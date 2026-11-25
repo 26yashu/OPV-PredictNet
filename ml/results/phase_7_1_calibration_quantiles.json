@@ -1,0 +1,31 @@
+{
+  "n_cal": 946,
+  "unnormalized_quantiles": {
+    "alpha_0.20_nominal_80": {
+      "rank_k": 758,
+      "cutoff_PCE_pp": 3.255625357142864
+    },
+    "alpha_0.10_nominal_90": {
+      "rank_k": 853,
+      "cutoff_PCE_pp": 4.418594055944055
+    },
+    "alpha_0.05_nominal_95": {
+      "rank_k": 900,
+      "cutoff_PCE_pp": 5.7035464912280744
+    }
+  },
+  "locally_normalized_quantiles": {
+    "alpha_0.20_nominal_80": {
+      "rank_k": 758,
+      "cutoff_normalized": 1.483029282028439
+    },
+    "alpha_0.10_nominal_90": {
+      "rank_k": 853,
+      "cutoff_normalized": 1.9852183214140642
+    },
+    "alpha_0.05_nominal_95": {
+      "rank_k": 900,
+      "cutoff_normalized": 2.580327886837722
+    }
+  }
+}

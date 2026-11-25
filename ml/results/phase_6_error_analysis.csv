@@ -1,0 +1,27 @@
+category,subcategory,record_count,percentage_of_dataset,mean_actual_pce,mean_pred_pce,mae,rmse,r2,bias
+Overall,"All 22,467 Benchmark Devices",22467,100.0,9.89,10.02,2.0628,2.9546,0.7395,-0.1289
+Device Architecture,Conventional,9284,41.32,9.97,10.08,2.0069,2.8648,0.7768,-0.1135
+Device Architecture,Inverted,5073,22.58,8.48,8.86,2.1557,3.0892,0.5418,-0.3794
+Device Architecture,Unspecified / Other,8110,36.1,10.69,10.68,2.0686,2.9697,0.754,0.0102
+Processing Metadata,With Additive Recorded,7942,35.35,10.41,10.36,2.0153,2.7735,0.7579,0.0439
+Processing Metadata,No Additive Recorded,14525,64.65,9.61,9.84,2.0888,3.0491,0.7285,-0.2234
+Processing Metadata,With Annealing Temp Recorded,5523,24.58,9.27,9.52,2.0091,2.8612,0.7433,-0.2553
+Processing Metadata,No Annealing Recorded,16944,75.42,10.1,10.19,2.0803,2.9844,0.737,-0.0877
+Processing Metadata,With Thickness Recorded,6687,29.76,7.9,8.22,2.1222,3.0032,0.6724,-0.3196
+Processing Metadata,No Thickness Recorded,15780,70.24,10.74,10.78,2.0376,2.9338,0.7443,-0.0481
+Acceptor Chemical Family,Fused-Ring NFA,10185,45.33,13.86,14.21,2.2284,3.3254,0.4321,-0.3491
+Acceptor Chemical Family,Fullerene,7177,31.94,4.59,4.67,1.689,2.2285,0.3731,-0.0819
+Acceptor Chemical Family,Other NFA,4056,18.05,9.14,8.99,2.2406,3.1004,0.5974,0.1437
+Acceptor Chemical Family,Polymer Acceptor,852,3.79,12.11,11.12,2.456,3.032,0.6868,0.9906
+Acceptor Chemical Family,PDI-based,197,0.88,4.11,5.02,1.7554,2.2983,0.0936,-0.9091
+Donor Chemical Family,Polymer Donor,16968,75.52,11.57,11.76,2.1246,3.0094,0.6786,-0.187
+Donor Chemical Family,Small-Molecule Donor,5499,24.48,4.73,4.67,1.8719,2.7787,0.4712,0.0505
+PCE Target Range,PCE < 3.0%,3320,14.78,1.67,4.19,2.5616,3.6891,-19.7022,-2.5223
+PCE Target Range,3.0% <= PCE < 6.0%,3695,16.45,4.4,5.26,1.8192,2.8247,-9.5922,-0.8588
+PCE Target Range,6.0% <= PCE < 9.0%,3588,15.97,7.49,7.58,2.1744,2.9743,-10.8271,-0.0947
+PCE Target Range,9.0% <= PCE < 12.0%,3182,14.16,10.35,10.2,2.2754,2.9664,-11.2447,0.1567
+PCE Target Range,12.0% <= PCE < 15.0%,2410,10.73,13.42,13.05,2.4401,3.0119,-10.9337,0.3667
+PCE Target Range,PCE >= 15.0%,6272,27.92,17.27,16.06,1.6255,2.521,-2.3373,1.2131
+Pair Frequency,Singleton Pairs (N=1),2790,12.42,7.29,7.48,2.1075,2.8463,0.5742,-0.1932
+Pair Frequency,Repeated Pairs (2 <= N < 20),6973,31.04,7.69,7.55,2.1615,2.916,0.6626,0.1396
+Pair Frequency,Frequent Pairs (N >= 20),12704,56.55,11.68,11.94,1.9988,2.9987,0.7348,-0.2622

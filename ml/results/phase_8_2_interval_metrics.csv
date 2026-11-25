@@ -1,0 +1,49 @@
+strategy_id,strategy,strategy_name,model_id,confidence_level,alpha,conformal_cutoff_q,coverage,empirical_coverage,mean_width,median_width,interval_width_pce
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M0,80%,0.2,5.6315,0.9487,0.9487,11.2629,11.2629,11.2629
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M0,90%,0.1,6.9215,0.9757,0.9757,13.8429,13.8429,13.8429
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M0,95%,0.05,7.7115,0.9851,0.9851,15.4229,15.4229,15.4229
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M1,80%,0.2,3.946,0.8724,0.8724,7.892,7.892,7.892
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M1,90%,0.1,5.1258,0.9379,0.9379,10.2515,10.2515,10.2515
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M1,95%,0.05,6.152,0.973,0.973,12.3041,12.3041,12.3041
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M2A,80%,0.2,4.1665,0.8832,0.8832,8.3329,8.3329,8.3329
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M2A,90%,0.1,5.2421,0.9446,0.9446,10.4842,10.4842,10.4842
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M2A,95%,0.05,6.0723,0.9683,0.9683,12.1447,12.1447,12.1447
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M3,80%,0.2,3.6139,0.8501,0.8501,7.2278,7.2278,7.2278
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M3,90%,0.1,4.6297,0.9257,0.9257,9.2594,9.2594,9.2594
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M3,95%,0.05,5.904,0.9581,0.9581,11.808,11.808,11.808
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M0,80%,0.2,3.7479,0.842,0.842,7.4959,7.4959,7.4959
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M0,90%,0.1,5.4202,0.9405,0.9405,10.8403,10.8403,10.8403
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M0,95%,0.05,6.9278,0.9779,0.9779,13.8555,13.8555,13.8555
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M1,80%,0.2,3.9897,0.8765,0.8765,7.9795,7.9795,7.9795
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M1,90%,0.1,5.5764,0.9502,0.9502,11.1529,11.1529,11.1529
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M1,95%,0.05,7.6792,0.981,0.981,15.3583,15.3583,15.3583
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M2A,80%,0.2,3.8701,0.8738,0.8738,7.7402,7.7402,7.7402
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M2A,90%,0.1,5.9142,0.9629,0.9629,11.8284,11.8284,11.8284
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M2A,95%,0.05,7.7875,0.9842,0.9842,15.5749,15.5749,15.5749
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M3,80%,0.2,3.8746,0.8936,0.8936,7.7492,7.7492,7.7492
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M3,90%,0.1,5.1911,0.9463,0.9463,10.3822,10.3822,10.3822
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M3,95%,0.05,6.0901,0.9658,0.9658,12.1803,12.1803,12.1803
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M0,80%,0.2,6.1662,0.9542,0.9542,12.3323,12.3323,12.3323
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M0,90%,0.1,8.2587,0.9965,0.9965,16.5174,16.5174,16.5174
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M0,95%,0.05,9.1187,0.9965,0.9965,18.2374,18.2374,18.2374
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M1,80%,0.2,5.9208,0.9683,0.9683,11.8415,11.8415,11.8415
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M1,90%,0.1,8.2346,0.9894,0.9894,16.4692,16.4692,16.4692
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M1,95%,0.05,9.1318,0.9965,0.9965,18.2635,18.2635,18.2635
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M2A,80%,0.2,5.9509,0.9683,0.9683,11.9018,11.9018,11.9018
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M2A,90%,0.1,9.3105,0.9965,0.9965,18.621,18.621,18.621
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M2A,95%,0.05,10.5057,1.0,1.0,21.0113,21.0113,21.0113
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M3,80%,0.2,5.7944,0.9577,0.9577,11.5888,11.5888,11.5888
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M3,90%,0.1,7.8444,0.9859,0.9859,15.6888,15.6888,15.6888
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M3,95%,0.05,8.7265,0.993,0.993,17.4529,17.4529,17.4529
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M0,80%,0.2,3.373,0.7571,0.7571,6.7461,6.7461,6.7461
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M0,90%,0.1,4.6503,0.8863,0.8863,9.3005,9.3005,9.3005
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M0,95%,0.05,6.2258,0.9531,0.9531,12.4516,12.4516,12.4516
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M1,80%,0.2,3.2034,0.7765,0.7765,6.4068,6.4068,6.4068
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M1,90%,0.1,4.283,0.8805,0.8805,8.566,8.566,8.566
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M1,95%,0.05,5.5572,0.9473,0.9473,11.1144,11.1144,11.1144
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M2A,80%,0.2,3.2428,0.7847,0.7847,6.4856,6.4856,6.4856
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M2A,90%,0.1,4.3832,0.8989,0.8989,8.7664,8.7664,8.7664
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M2A,95%,0.05,5.6828,0.9463,0.9463,11.3656,11.3656,11.3656
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M3,80%,0.2,3.138,0.7813,0.7813,6.2761,6.2761,6.2761
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M3,90%,0.1,4.1387,0.8844,0.8844,8.2775,8.2775,8.2775
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M3,95%,0.05,5.351,0.939,0.939,10.702,10.702,10.702

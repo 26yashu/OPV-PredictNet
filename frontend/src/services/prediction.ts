@@ -1,6 +1,6 @@
 /**
  * OPV-PredictNet — Prediction & Molecular Analysis Service
- * Phase 3: Client for RDKit molecular analysis, inference pipeline, and prediction history
+ * Phase 10: Client for RDKit molecular analysis, Phase 9 FastAPI Model Serving, and History
  */
 
 import type {
@@ -8,6 +8,9 @@ import type {
   MolecularAnalysisResponse,
   PredictionRequest,
   PredictionResponse,
+  Phase9PredictionRequest,
+  Phase9PredictionResponse,
+  ModelsListResponse,
   PredictionHistoryResponse,
   PredictionHistoryItem,
 } from '../types/prediction';
@@ -56,7 +59,7 @@ export async function analyzeMolecules(payload: MolecularAnalysisRequest): Promi
 }
 
 /**
- * Run full OPV prediction pipeline. If an auth token is provided, persists the run to the user's history.
+ * Run full OPV prediction pipeline (Phase 3 legacy contract).
  */
 export async function submitPrediction(
   payload: PredictionRequest,
@@ -86,11 +89,56 @@ export async function submitPrediction(
 }
 
 /**
+ * Fetch available Phase 9 packaged models (M0, M1, M2A, M3), metadata, and quantiles.
+ */
+export async function fetchPhase9Models(): Promise<ModelsListResponse> {
+  const response = await fetch(`${API_BASE_URL}/api/predictions/models`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const errorMsg = await parseErrorMessage(response, 'Failed to fetch model catalog');
+    throw new Error(errorMsg);
+  }
+
+  return response.json();
+}
+
+/**
+ * Run Phase 9 PCE prediction with UnifiedFeaturePipeline, conformal uncertainty intervals, and OOD checks.
+ * Requires authenticated user JWT bearer token.
+ */
+export async function submitPhase9Prediction(
+  payload: Phase9PredictionRequest,
+  token: string
+): Promise<Phase9PredictionResponse> {
+  const response = await fetch(`${API_BASE_URL}/api/predictions/pce`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const errorMsg = await parseErrorMessage(response, 'Prediction calculation failed');
+    throw new Error(errorMsg);
+  }
+
+  return response.json();
+}
+
+/**
  * Fetch authenticated user's prediction history.
  */
 export async function getPredictionHistory(
   token: string,
-  limit: number = 20,
+  limit: number = 30,
   offset: number = 0
 ): Promise<PredictionHistoryResponse> {
   const response = await fetch(`${API_BASE_URL}/api/predictions?limit=${limit}&offset=${offset}`, {

@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 from backend.app.api.deps import get_current_user
 from backend.app.db.session import get_db
+from backend.app.models.model_version import ModelVersion
 from backend.app.models.prediction import Prediction
 from backend.app.models.user import User
 from backend.app.schemas.prediction import (
@@ -14,9 +15,17 @@ from backend.app.schemas.prediction import (
     PredictionResponse,
     PredictionHistoryResponse,
     PredictionHistoryItem,
+    Phase9PredictionRequest,
+    Phase9PredictionResponse,
 )
 from backend.app.services.molecular import analyze_blend
+from backend.app.services.phase9_prediction import (
+    DualScaffoldOODError,
+    ModelNotAvailableError,
+    phase9_service,
+)
 from backend.app.services.prediction import run_prediction_pipeline
+from ml.src.features.processing import FeaturePipelineError
 
 router = APIRouter()
 
@@ -149,6 +158,120 @@ def get_prediction_history(
         total=total,
         items=[PredictionHistoryItem.model_validate(item) for item in items],
     )
+
+
+@router.get(
+    "/models",
+    status_code=status.HTTP_200_OK,
+    summary="List packaged Phase 9 OPV models and governance metadata"
+)
+def list_phase9_models():
+    """Return available Phase 9 models (M0, M1, M2A, M3), conformal quantiles, and governance status."""
+    return phase9_service.get_available_models()
+
+
+@router.post(
+    "/pce",
+    response_model=Phase9PredictionResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Run Phase 9 PCE prediction with unified feature pipeline, conformal intervals, and OOD checks"
+)
+def create_phase9_prediction(
+    req: Phase9PredictionRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    """Run Phase 9 PCE prediction using packaged M0/M1/M2A/M3 models and persist history."""
+    processing_params = {
+        "d_a_ratio": req.d_a_ratio,
+        "active_layer_thickness": req.active_layer_thickness,
+        "annealing_temp": req.annealing_temp,
+        "additive_canonical": req.additive_canonical,
+        "additive_ratio": req.additive_ratio,
+        "solvent_canonical": req.solvent_canonical,
+        "device_type": req.device_type,
+        "etl_canonical": req.etl_canonical,
+        "htl_canonical": req.htl_canonical,
+    }
+
+    try:
+        result = phase9_service.predict(
+            donor_smiles=req.donor_smiles,
+            acceptor_smiles=req.acceptor_smiles,
+            donor_name=req.donor_name or "Donor Material",
+            acceptor_name=req.acceptor_name or "Acceptor Material",
+            model_id=req.model_id,
+            confidence_level=req.confidence_level,
+            processing_params=processing_params,
+            allow_dual_scaffold_ood=req.allow_dual_scaffold_ood,
+        )
+    except DualScaffoldOODError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=str(exc),
+        )
+    except (FeaturePipelineError, ValueError) as exc:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail=str(exc),
+        )
+    except ModelNotAvailableError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=str(exc),
+        )
+
+    # Persist to prediction history
+    version_tag = result["model_version"]
+    existing_mv = db.query(ModelVersion).filter(ModelVersion.version_tag == version_tag).first()
+    if not existing_mv:
+        bench = result["scientific_support"].get("benchmark_metrics", {})
+        existing_mv = ModelVersion(
+            version_tag=version_tag,
+            model_name=f"OPV-PredictNet-{result['model_id']}",
+            algorithm=result["algorithm"],
+            target_metrics="PCE",
+            r2_score=bench.get("r2"),
+            mae_score=bench.get("mae"),
+            rmse_score=bench.get("rmse"),
+            artifact_path=str(phase9_service.models_dir / f"phase9_{result['model_id']}_model.joblib"),
+            is_active=True,
+        )
+        db.add(existing_mv)
+        db.commit()
+
+    uncertainty_payload = {
+        "model_id": result["model_id"],
+        "interval_estimate": result["interval_estimate"],
+        "ood_status": result["ood_status"],
+        "scientific_support": result["scientific_support"],
+        "warnings": result["warnings"],
+        "research_estimate_only": True,
+        "validated_for_production": False,
+    }
+
+    prediction_record = Prediction(
+        user_id=current_user.id,
+        input_method=req.input_method or "smiles",
+        donor_name=req.donor_name or "Donor Material",
+        donor_smiles=result["donor"]["canonical_smiles"],
+        acceptor_name=req.acceptor_name or "Acceptor Material",
+        acceptor_smiles=result["acceptor"]["canonical_smiles"],
+        device_parameters_json=json.dumps(processing_params),
+        predicted_pce=float(result["point_prediction"]["predicted_pce"]),
+        predicted_voc=None,
+        predicted_jsc=None,
+        predicted_ff=None,
+        uncertainty_json=json.dumps(uncertainty_payload),
+        model_version=existing_mv.version_tag,
+    )
+    db.add(prediction_record)
+    db.commit()
+    db.refresh(prediction_record)
+
+    result["id"] = prediction_record.id
+    result["created_at"] = prediction_record.created_at
+    return result
 
 
 @router.get(

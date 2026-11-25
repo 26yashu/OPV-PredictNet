@@ -1,0 +1,71 @@
+{
+  "da_median": 0.8333333333333334,
+  "thk_median": 100.0,
+  "tmp_median": 100.0,
+  "f_donor_median": 0.45454545454545453,
+  "thk_log_median": 2.0,
+  "ann_norm_median": 0.0,
+  "bp_median": 131.6,
+  "etl_median": 4.3,
+  "htl_median": 5.0,
+  "ohe_categories": [
+    [
+      "chlorobenzene",
+      "chloroform",
+      "missing",
+      "o-dcb",
+      "other"
+    ],
+    [
+      "cn",
+      "dio",
+      "missing",
+      "other"
+    ],
+    [
+      "conventional",
+      "inverted",
+      "missing",
+      "other"
+    ],
+    [
+      "missing",
+      "moo3",
+      "other",
+      "pedot_pss"
+    ],
+    [
+      "ca",
+      "missing",
+      "other",
+      "pdinn",
+      "pfn_br",
+      "zno"
+    ]
+  ],
+  "ohe_feature_names": [
+    "solvent_chlorobenzene",
+    "solvent_chloroform",
+    "solvent_missing",
+    "solvent_o-dcb",
+    "solvent_other",
+    "additive_cn",
+    "additive_dio",
+    "additive_missing",
+    "additive_other",
+    "architecture_conventional",
+    "architecture_inverted",
+    "architecture_missing",
+    "architecture_other",
+    "htl_missing",
+    "htl_moo3",
+    "htl_other",
+    "htl_pedot_pss",
+    "etl_ca",
+    "etl_missing",
+    "etl_other",
+    "etl_pdinn",
+    "etl_pfn_br",
+    "etl_zno"
+  ]
+}

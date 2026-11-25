@@ -1,0 +1,309 @@
+{
+  "metadata": {
+    "python_version": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "random_state": 42
+  },
+  "nested_cross_validation_protocol": {
+    "outer_splits": "5-Fold GroupKFold on material pair",
+    "inner_splits": "3-Fold GroupKFold on material pairs within outer training partition only",
+    "search_space": [
+      "RF_Config_0_Baseline",
+      "RF_Config_1_DepthReg",
+      "RF_Config_2_FeatureSqrt",
+      "RF_Config_3_LeafReg",
+      "RF_Config_4_EnsembleScaled"
+    ],
+    "selection_criterion": "inner validation MAE",
+    "outer_selected_configurations": [
+      {
+        "outer_fold": 1,
+        "selected_config_id": "RF_Config_4_EnsembleScaled",
+        "inner_cv_mae": 2.0974,
+        "params": {
+          "n_estimators": 200,
+          "max_depth": null,
+          "min_samples_split": 2,
+          "min_samples_leaf": 1,
+          "max_features": 0.8
+        },
+        "description": "Scaled ensemble: n=200, max_depth=None, min_samples_split=2, min_samples_leaf=1, max_features=0.8",
+        "all_inner_scores": {
+          "RF_Config_0_Baseline": 2.1028,
+          "RF_Config_1_DepthReg": 2.1201,
+          "RF_Config_2_FeatureSqrt": 2.1423,
+          "RF_Config_3_LeafReg": 2.1563,
+          "RF_Config_4_EnsembleScaled": 2.0974
+        }
+      },
+      {
+        "outer_fold": 2,
+        "selected_config_id": "RF_Config_2_FeatureSqrt",
+        "inner_cv_mae": 2.0643,
+        "params": {
+          "n_estimators": 200,
+          "max_depth": null,
+          "min_samples_split": 2,
+          "min_samples_leaf": 2,
+          "max_features": "sqrt"
+        },
+        "description": "Decorrelated features: n=200, max_depth=None, min_samples_split=2, min_samples_leaf=2, max_features='sqrt'",
+        "all_inner_scores": {
+          "RF_Config_0_Baseline": 2.0813,
+          "RF_Config_1_DepthReg": 2.0696,
+          "RF_Config_2_FeatureSqrt": 2.0643,
+          "RF_Config_3_LeafReg": 2.0832,
+          "RF_Config_4_EnsembleScaled": 2.0709
+        }
+      },
+      {
+        "outer_fold": 3,
+        "selected_config_id": "RF_Config_4_EnsembleScaled",
+        "inner_cv_mae": 2.1937,
+        "params": {
+          "n_estimators": 200,
+          "max_depth": null,
+          "min_samples_split": 2,
+          "min_samples_leaf": 1,
+          "max_features": 0.8
+        },
+        "description": "Scaled ensemble: n=200, max_depth=None, min_samples_split=2, min_samples_leaf=1, max_features=0.8",
+        "all_inner_scores": {
+          "RF_Config_0_Baseline": 2.2215,
+          "RF_Config_1_DepthReg": 2.2032,
+          "RF_Config_2_FeatureSqrt": 2.1971,
+          "RF_Config_3_LeafReg": 2.1999,
+          "RF_Config_4_EnsembleScaled": 2.1937
+        }
+      },
+      {
+        "outer_fold": 4,
+        "selected_config_id": "RF_Config_2_FeatureSqrt",
+        "inner_cv_mae": 2.034,
+        "params": {
+          "n_estimators": 200,
+          "max_depth": null,
+          "min_samples_split": 2,
+          "min_samples_leaf": 2,
+          "max_features": "sqrt"
+        },
+        "description": "Decorrelated features: n=200, max_depth=None, min_samples_split=2, min_samples_leaf=2, max_features='sqrt'",
+        "all_inner_scores": {
+          "RF_Config_0_Baseline": 2.0583,
+          "RF_Config_1_DepthReg": 2.0356,
+          "RF_Config_2_FeatureSqrt": 2.034,
+          "RF_Config_3_LeafReg": 2.0568,
+          "RF_Config_4_EnsembleScaled": 2.0483
+        }
+      },
+      {
+        "outer_fold": 5,
+        "selected_config_id": "RF_Config_2_FeatureSqrt",
+        "inner_cv_mae": 2.0696,
+        "params": {
+          "n_estimators": 200,
+          "max_depth": null,
+          "min_samples_split": 2,
+          "min_samples_leaf": 2,
+          "max_features": "sqrt"
+        },
+        "description": "Decorrelated features: n=200, max_depth=None, min_samples_split=2, min_samples_leaf=2, max_features='sqrt'",
+        "all_inner_scores": {
+          "RF_Config_0_Baseline": 2.0896,
+          "RF_Config_1_DepthReg": 2.079,
+          "RF_Config_2_FeatureSqrt": 2.0696,
+          "RF_Config_3_LeafReg": 2.0906,
+          "RF_Config_4_EnsembleScaled": 2.094
+        }
+      }
+    ]
+  },
+  "model_comparison": {
+    "Phase_5_Baseline_RF": {
+      "fold_mae_mean": 2.0628,
+      "fold_mae_std": 0.1268,
+      "fold_rmse_mean": 2.9467,
+      "fold_rmse_std": 0.2426,
+      "fold_r2_mean": 0.7099,
+      "fold_r2_std": 0.0918,
+      "pooled_mae": 2.0628,
+      "pooled_rmse": 2.9546,
+      "pooled_r2": 0.7395
+    },
+    "Nested_Selected_RF": {
+      "fold_mae_mean": 2.1265,
+      "fold_mae_std": 0.1312,
+      "fold_rmse_mean": 2.9443,
+      "fold_rmse_std": 0.2099,
+      "fold_r2_mean": 0.7138,
+      "fold_r2_std": 0.0779,
+      "pooled_mae": 2.1265,
+      "pooled_rmse": 2.9503,
+      "pooled_r2": 0.7403
+    },
+    "DummyRegressor": {
+      "fold_mae_mean": 5.1369,
+      "fold_mae_std": 0.3208,
+      "fold_rmse_mean": 5.878,
+      "fold_rmse_std": 0.2912,
+      "fold_r2_mean": -0.1216,
+      "fold_r2_std": 0.1887,
+      "pooled_mae": 5.1369,
+      "pooled_rmse": 5.8838,
+      "pooled_r2": -0.0329
+    }
+  },
+  "paired_difference_statistics": {
+    "mean_delta_mae": -0.0637,
+    "median_delta_mae": 0.0021,
+    "n_records_nested_better": 11366,
+    "n_records_nested_worse": 11101,
+    "n_records_equal": 0,
+    "clustered_bootstrap_mean_delta": -0.06,
+    "clustered_bootstrap_95_ci_low": -0.2427,
+    "clustered_bootstrap_95_ci_high": 0.0334,
+    "ci_crosses_zero": true,
+    "empirical_p_value": 0.722
+  },
+  "corrected_metadata_audit": {
+    "additive_status_counts": {
+      "Status Unknown (Unrecorded)": 14524,
+      "Explicitly Reported Present": 7596,
+      "Explicitly Reported Absent": 347
+    },
+    "annealing_status_counts": {
+      "Status Unknown (Unrecorded)": 16944,
+      "Explicitly Thermal Annealed": 5471,
+      "Explicitly Room Temp / Absent": 52
+    },
+    "architecture_strict_counts": {
+      "Conventional Architecture": 9284,
+      "Architecture Unspecified": 8110,
+      "Inverted Architecture": 5064,
+      "Ambiguous / Dual Structure Reported": 9
+    },
+    "tandem_identifiable": false,
+    "subgroup_metrics": [
+      {
+        "dimension": "Additive Classification",
+        "category": "Explicitly Reported Absent",
+        "count": 347,
+        "percentage": 1.54,
+        "actual_pce_mean": 8.66,
+        "actual_pce_std": 6.31,
+        "baseline_mae": 1.8713,
+        "baseline_r2": 0.8374,
+        "nested_mae": 2.0254,
+        "nested_r2": 0.8304
+      },
+      {
+        "dimension": "Additive Classification",
+        "category": "Explicitly Reported Present",
+        "count": 7596,
+        "percentage": 33.81,
+        "actual_pce_mean": 10.49,
+        "actual_pce_std": 5.59,
+        "baseline_mae": 2.0219,
+        "baseline_r2": 0.7522,
+        "nested_mae": 2.1262,
+        "nested_r2": 0.7431
+      },
+      {
+        "dimension": "Additive Classification",
+        "category": "Status Unknown (Unrecorded)",
+        "count": 14524,
+        "percentage": 64.65,
+        "actual_pce_mean": 9.61,
+        "actual_pce_std": 5.85,
+        "baseline_mae": 2.0887,
+        "baseline_r2": 0.7285,
+        "nested_mae": 2.1291,
+        "nested_r2": 0.7342
+      },
+      {
+        "dimension": "Annealing Classification",
+        "category": "Explicitly Room Temp / Absent",
+        "count": 52,
+        "percentage": 0.23,
+        "actual_pce_mean": 7.71,
+        "actual_pce_std": 5.21,
+        "baseline_mae": 1.7902,
+        "baseline_r2": 0.7973,
+        "nested_mae": 1.8637,
+        "nested_r2": 0.7836
+      },
+      {
+        "dimension": "Annealing Classification",
+        "category": "Explicitly Thermal Annealed",
+        "count": 5471,
+        "percentage": 24.35,
+        "actual_pce_mean": 9.28,
+        "actual_pce_std": 5.65,
+        "baseline_mae": 2.0112,
+        "baseline_r2": 0.7427,
+        "nested_mae": 2.06,
+        "nested_r2": 0.7455
+      },
+      {
+        "dimension": "Annealing Classification",
+        "category": "Status Unknown (Unrecorded)",
+        "count": 16944,
+        "percentage": 75.42,
+        "actual_pce_mean": 10.1,
+        "actual_pce_std": 5.82,
+        "baseline_mae": 2.0803,
+        "baseline_r2": 0.737,
+        "nested_mae": 2.1488,
+        "nested_r2": 0.7372
+      },
+      {
+        "dimension": "Device Architecture",
+        "category": "Ambiguous / Dual Structure Reported",
+        "count": 9,
+        "percentage": 0.04,
+        "actual_pce_mean": 10.81,
+        "actual_pce_std": 5.5,
+        "baseline_mae": 1.4759,
+        "baseline_r2": 0.8922,
+        "nested_mae": 1.7364,
+        "nested_r2": 0.831
+      },
+      {
+        "dimension": "Device Architecture",
+        "category": "Architecture Unspecified",
+        "count": 8110,
+        "percentage": 36.1,
+        "actual_pce_mean": 10.69,
+        "actual_pce_std": 5.99,
+        "baseline_mae": 2.0686,
+        "baseline_r2": 0.754,
+        "nested_mae": 2.1412,
+        "nested_r2": 0.7536
+      },
+      {
+        "dimension": "Device Architecture",
+        "category": "Conventional Architecture",
+        "count": 9284,
+        "percentage": 41.32,
+        "actual_pce_mean": 9.97,
+        "actual_pce_std": 6.06,
+        "baseline_mae": 2.0069,
+        "baseline_r2": 0.7768,
+        "nested_mae": 2.0929,
+        "nested_r2": 0.775
+      },
+      {
+        "dimension": "Device Architecture",
+        "category": "Inverted Architecture",
+        "count": 5064,
+        "percentage": 22.54,
+        "actual_pce_mean": 8.48,
+        "actual_pce_std": 4.56,
+        "baseline_mae": 2.1569,
+        "baseline_r2": 0.5408,
+        "nested_mae": 2.1652,
+        "nested_r2": 0.5532
+      }
+    ]
+  }
+}

@@ -596,8 +596,8 @@ export const PredictionSection: React.FC<PredictionSectionProps> = ({ authToken:
           <div className="limitations-box">
             <span className="limitation-title">Scientific Limitations &amp; Reproducibility Notice:</span>
             <ul className="limitation-list">
-              {predictionResult.model_metadata?.limitations && predictionResult.model_metadata.limitations.length > 0 ? (
-                predictionResult.model_metadata.limitations.map((lim, i) => <li key={i}>{lim}</li>)
+              {Array.isArray(predictionResult.model_metadata?.limitations) && predictionResult.model_metadata.limitations.length > 0 ? (
+                predictionResult.model_metadata.limitations.map((lim: string, i: number) => <li key={i}>{lim}</li>)
               ) : (
                 <>
                   <li>Isolated molecular SMILES alone do not determine device efficiency. Thin-film morphology and nanophase separation are required.</li>

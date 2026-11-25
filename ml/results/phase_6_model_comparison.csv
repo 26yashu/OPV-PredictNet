@@ -1,0 +1,6 @@
+config_id,description,mean_fold_mae,std_fold_mae,mean_fold_rmse,std_fold_rmse,mean_fold_r2,std_fold_r2,pooled_mae,pooled_rmse,pooled_r2,total_fit_time_seconds
+RF_Config_0_Baseline,"Phase 5 Baseline: n=100, max_depth=None, min_samples_leaf=1, max_features=1.0",2.0628,0.1134,2.9466,0.217,0.7099,0.0821,2.0628,2.9546,0.7395,14.74
+RF_Config_1_DepthReg,"Depth regularized: n=100, max_depth=20, min_samples_leaf=2, max_features=0.8",2.086,0.0792,2.9214,0.2039,0.7159,0.0779,2.086,2.9285,0.7441,10.26
+RF_Config_2_FeatureSqrt,"Decorrelated features: n=200, max_depth=None, min_samples_leaf=2, max_features='sqrt'",2.1218,0.1157,2.9229,0.1699,0.7181,0.0674,2.1218,2.9278,0.7442,9.14
+RF_Config_3_LeafReg,"Leaf regularized: n=100, max_depth=None, min_samples_split=4, min_samples_leaf=4, max_features=0.8",2.1287,0.1187,2.9333,0.2047,0.716,0.0708,2.1287,2.9404,0.742,9.44
+RF_Config_4_EnsembleScaled,"Scaled ensemble: n=200, max_depth=None, min_samples_split=2, min_samples_leaf=1, max_features=0.8",2.0532,0.1056,2.9289,0.2182,0.7131,0.0824,2.0532,2.937,0.7426,23.39

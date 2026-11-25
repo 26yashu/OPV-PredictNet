@@ -1,0 +1,43 @@
+{
+  "total_records": 22467,
+  "leakage_verification": "PASS_ZERO_LEAKAGE",
+  "primary_pair_grouped_metrics": {
+    "mean_of_folds": {
+      "rf_mae": 2.062781857412781,
+      "rf_mae_std": 0.12678386545220588,
+      "rf_rmse": 2.9466445699178836,
+      "rf_rmse_std": 0.2426080487214361,
+      "rf_r2": 0.7098864988949352,
+      "rf_r2_std": 0.09175420253482293
+    },
+    "pooled_out_of_fold": {
+      "rf_mae": 2.06277922932679,
+      "rf_rmse": 2.954626617640924,
+      "rf_r2": 0.7395242352330745
+    }
+  },
+  "residual_stats": {
+    "mean_bias": -0.12890689372544087,
+    "median": 0.14230000000000764,
+    "std": 2.9518789443148177,
+    "skewness": -0.5411638805727975,
+    "kurtosis": 4.386935730908608
+  },
+  "pce_tier_performance": {
+    "low_pce": {
+      "count": 5874,
+      "mae": 2.1896572399922327,
+      "bias": -1.8584357527463857
+    },
+    "medium_pce": {
+      "count": 7911,
+      "mae": 2.200278737100243,
+      "bias": -0.05970195818027725
+    },
+    "high_pce": {
+      "count": 8682,
+      "mae": 1.851648148856322,
+      "bias": 0.9781850520003413
+    }
+  }
+}

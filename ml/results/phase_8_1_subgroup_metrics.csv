@@ -1,0 +1,86 @@
+slice_type,subgroup_name,sample_size_n,model_id,mae_pce,bias_pce,cov_90_raw,width_90_pce,statistical_status
+Completeness Tier,Molecular-Only (k=0),99,M0,1.9469,-0.2993,0.9495,8.9671,Evaluated
+Completeness Tier,Molecular-Only (k=0),99,M1,1.9209,0.1551,0.9091,8.6488,Evaluated
+Completeness Tier,Molecular-Only (k=0),99,M2,1.9167,0.1452,0.9394,8.7298,Evaluated
+Completeness Tier,Molecular-Only (k=0),99,M2A,1.9,0.094,0.9495,8.66,Evaluated
+Completeness Tier,Molecular-Only (k=0),99,M3,2.1584,0.2352,0.9192,8.4283,Evaluated
+Completeness Tier,Sparse (k=1),44,M0,2.2033,-0.3919,0.8864,8.9671,Evaluated
+Completeness Tier,Sparse (k=1),44,M1,1.9784,-0.0979,0.8864,8.6488,Evaluated
+Completeness Tier,Sparse (k=1),44,M2,1.9336,-0.0412,0.9091,8.7298,Evaluated
+Completeness Tier,Sparse (k=1),44,M2A,1.9044,-0.0486,0.9545,8.66,Evaluated
+Completeness Tier,Sparse (k=1),44,M3,1.9908,0.1945,0.8864,8.4283,Evaluated
+Completeness Tier,Low-Partial (k=2-3),283,M0,2.4047,-0.2208,0.8763,8.9671,Evaluated
+Completeness Tier,Low-Partial (k=2-3),283,M1,2.2964,-0.2092,0.8657,8.6488,Evaluated
+Completeness Tier,Low-Partial (k=2-3),283,M2,2.3908,-0.193,0.8516,8.7298,Evaluated
+Completeness Tier,Low-Partial (k=2-3),283,M2A,2.3976,-0.2149,0.8657,8.66,Evaluated
+Completeness Tier,Low-Partial (k=2-3),283,M3,2.3122,-0.1496,0.8551,8.4283,Evaluated
+Completeness Tier,High-Partial (k=4-5),385,M0,2.0978,0.4575,0.9013,8.9671,Evaluated
+Completeness Tier,High-Partial (k=4-5),385,M1,1.9266,0.3573,0.9221,8.6488,Evaluated
+Completeness Tier,High-Partial (k=4-5),385,M2,1.9363,0.3318,0.9169,8.7298,Evaluated
+Completeness Tier,High-Partial (k=4-5),385,M2A,1.9306,0.3543,0.9091,8.66,Evaluated
+Completeness Tier,High-Partial (k=4-5),385,M3,1.8894,0.3239,0.8961,8.4283,Evaluated
+Completeness Tier,Rich (k=6-7),135,M0,2.0558,-0.3228,0.9185,8.9671,Evaluated
+Completeness Tier,Rich (k=6-7),135,M1,1.8777,-0.2916,0.9185,8.6488,Evaluated
+Completeness Tier,Rich (k=6-7),135,M2,1.951,-0.3028,0.9259,8.7298,Evaluated
+Completeness Tier,Rich (k=6-7),135,M2A,1.9515,-0.3414,0.9185,8.66,Evaluated
+Completeness Tier,Rich (k=6-7),135,M3,1.9265,-0.0692,0.9037,8.4283,Evaluated
+Field Count (k),k = 0,99,M0,1.9469,-0.2993,0.9495,8.9671,Evaluated
+Field Count (k),k = 0,99,M1,1.9209,0.1551,0.9091,8.6488,Evaluated
+Field Count (k),k = 0,99,M2,1.9167,0.1452,0.9394,8.7298,Evaluated
+Field Count (k),k = 0,99,M2A,1.9,0.094,0.9495,8.66,Evaluated
+Field Count (k),k = 0,99,M3,2.1584,0.2352,0.9192,8.4283,Evaluated
+Field Count (k),k = 1,44,M0,2.2033,-0.3919,0.8864,8.9671,Evaluated
+Field Count (k),k = 1,44,M1,1.9784,-0.0979,0.8864,8.6488,Evaluated
+Field Count (k),k = 1,44,M2,1.9336,-0.0412,0.9091,8.7298,Evaluated
+Field Count (k),k = 1,44,M2A,1.9044,-0.0486,0.9545,8.66,Evaluated
+Field Count (k),k = 1,44,M3,1.9908,0.1945,0.8864,8.4283,Evaluated
+Field Count (k),k = 2,125,M0,2.3395,-0.2179,0.896,8.9671,Evaluated
+Field Count (k),k = 2,125,M1,2.1841,-0.1094,0.92,8.6488,Evaluated
+Field Count (k),k = 2,125,M2,2.2338,-0.1103,0.904,8.7298,Evaluated
+Field Count (k),k = 2,125,M2A,2.2662,-0.1648,0.904,8.66,Evaluated
+Field Count (k),k = 2,125,M3,2.2369,0.0611,0.848,8.4283,Evaluated
+Field Count (k),k = 3,158,M0,2.4563,-0.2232,0.8608,8.9671,Evaluated
+Field Count (k),k = 3,158,M1,2.3852,-0.2882,0.8228,8.6488,Evaluated
+Field Count (k),k = 3,158,M2,2.515,-0.2583,0.8101,8.7298,Evaluated
+Field Count (k),k = 3,158,M2A,2.5016,-0.2546,0.8354,8.66,Evaluated
+Field Count (k),k = 3,158,M3,2.3717,-0.3163,0.8608,8.4283,Evaluated
+Field Count (k),k = 4,191,M0,2.0619,0.6324,0.8953,8.9671,Evaluated
+Field Count (k),k = 4,191,M1,1.8306,0.4433,0.9372,8.6488,Evaluated
+Field Count (k),k = 4,191,M2,1.8794,0.3843,0.9319,8.7298,Evaluated
+Field Count (k),k = 4,191,M2A,1.8986,0.4336,0.9215,8.66,Evaluated
+Field Count (k),k = 4,191,M3,1.7638,0.4043,0.9005,8.4283,Evaluated
+Field Count (k),k = 5,194,M0,2.1332,0.2854,0.9072,8.9671,Evaluated
+Field Count (k),k = 5,194,M1,2.0212,0.2726,0.9072,8.6488,Evaluated
+Field Count (k),k = 5,194,M2,1.9924,0.2802,0.9021,8.7298,Evaluated
+Field Count (k),k = 5,194,M2A,1.9621,0.2761,0.8969,8.66,Evaluated
+Field Count (k),k = 5,194,M3,2.0132,0.2447,0.8918,8.4283,Evaluated
+Field Count (k),k = 6,113,M0,1.8665,-0.3683,0.9381,8.9671,Evaluated
+Field Count (k),k = 6,113,M1,1.7731,-0.3674,0.9381,8.6488,Evaluated
+Field Count (k),k = 6,113,M2,1.7968,-0.3105,0.9469,8.7298,Evaluated
+Field Count (k),k = 6,113,M2A,1.7924,-0.3641,0.9381,8.66,Evaluated
+Field Count (k),k = 6,113,M3,1.8112,-0.1682,0.9204,8.4283,Evaluated
+Field Count (k),k = 7,22,M0,3.0285,-0.0889,0.8182,8.9671,Descriptive (Underpowered)
+Field Count (k),k = 7,22,M1,2.4146,0.098,0.8182,8.6488,Descriptive (Underpowered)
+Field Count (k),k = 7,22,M2,2.7431,-0.2631,0.8182,8.7298,Descriptive (Underpowered)
+Field Count (k),k = 7,22,M2A,2.7688,-0.2249,0.8182,8.66,Descriptive (Underpowered)
+Field Count (k),k = 7,22,M3,2.5189,0.4392,0.8182,8.4283,Descriptive (Underpowered)
+PCE Range,< 5.0%,322,M0,2.247,2.0003,0.882,8.9671,Evaluated
+PCE Range,< 5.0%,322,M1,2.1224,1.847,0.8665,8.6488,Evaluated
+PCE Range,< 5.0%,322,M2,2.1416,1.8854,0.8758,8.7298,Evaluated
+PCE Range,< 5.0%,322,M2A,2.132,1.8583,0.8789,8.66,Evaluated
+PCE Range,< 5.0%,322,M3,2.1125,1.8628,0.854,8.4283,Evaluated
+PCE Range,5.0% - 10.0%,339,M0,1.9434,-0.2466,0.9322,8.9671,Evaluated
+PCE Range,5.0% - 10.0%,339,M1,1.8129,-0.1264,0.941,8.6488,Evaluated
+PCE Range,5.0% - 10.0%,339,M2,1.848,-0.1294,0.9381,8.7298,Evaluated
+PCE Range,5.0% - 10.0%,339,M2A,1.8558,-0.142,0.9322,8.66,Evaluated
+PCE Range,5.0% - 10.0%,339,M3,1.8609,0.008,0.9263,8.4283,Evaluated
+PCE Range,10.0% - 15.0%,210,M0,2.1164,-1.5426,0.9095,8.9671,Evaluated
+PCE Range,10.0% - 15.0%,210,M1,2.0016,-1.4711,0.9143,8.6488,Evaluated
+PCE Range,10.0% - 15.0%,210,M2,2.0576,-1.522,0.9095,8.7298,Evaluated
+PCE Range,10.0% - 15.0%,210,M2A,2.0553,-1.4999,0.9238,8.66,Evaluated
+PCE Range,10.0% - 15.0%,210,M3,2.0548,-1.4319,0.8952,8.4283,Evaluated
+PCE Range,>= 15.0%,75,M0,3.0481,-2.8449,0.8133,8.9671,Evaluated
+PCE Range,>= 15.0%,75,M1,2.7204,-2.5723,0.84,8.6488,Evaluated
+PCE Range,>= 15.0%,75,M2,2.8286,-2.6503,0.8133,8.7298,Evaluated
+PCE Range,>= 15.0%,75,M2A,2.7987,-2.6481,0.8267,8.66,Evaluated
+PCE Range,>= 15.0%,75,M3,2.674,-2.6266,0.8267,8.4283,Evaluated

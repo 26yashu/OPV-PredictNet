@@ -63,6 +63,8 @@ ml/data/processed/*
 ml/models/saved_models/*
 !ml/models/saved_models/README.md
 !ml/models/saved_models/.gitkeep
+!ml/models/saved_models/phase9_v1/
+!ml/models/saved_models/phase9_v1/*.json
 *.joblib
 *.pkl
 *.h5

@@ -1,0 +1,65 @@
+strategy_id,strategy,slice_type,slice_name,sample_size_n,model_id,mae_pce,bias_pce,cov_90
+Strategy_A,Strategy_A,PCE Range,< 5.0%,628,M0,1.7756,1.3301,0.9809
+Strategy_A,Strategy_A,PCE Range,< 5.0%,628,M1,1.7524,1.2781,0.9475
+Strategy_A,Strategy_A,PCE Range,< 5.0%,628,M2A,1.8317,1.3903,0.9602
+Strategy_A,Strategy_A,PCE Range,< 5.0%,628,M3,1.6707,1.2416,0.9506
+Strategy_A,Strategy_A,PCE Range,5.0% - 10.0%,543,M0,2.4625,-0.9786,0.9816
+Strategy_A,Strategy_A,PCE Range,5.0% - 10.0%,543,M1,2.2376,-0.6936,0.9484
+Strategy_A,Strategy_A,PCE Range,5.0% - 10.0%,543,M2A,2.295,-0.6711,0.9466
+Strategy_A,Strategy_A,PCE Range,5.0% - 10.0%,543,M3,2.2011,-0.6113,0.919
+Strategy_A,Strategy_A,PCE Range,10.0% - 15.0%,195,M0,2.2668,-1.6874,0.9487
+Strategy_A,Strategy_A,PCE Range,10.0% - 15.0%,195,M1,2.341,-1.0808,0.9077
+Strategy_A,Strategy_A,PCE Range,10.0% - 15.0%,195,M2A,2.4084,-1.0627,0.9231
+Strategy_A,Strategy_A,PCE Range,10.0% - 15.0%,195,M3,2.3114,-1.1926,0.8974
+Strategy_A,Strategy_A,PCE Range,>= 15.0%,115,M0,3.5546,-3.5546,0.9652
+Strategy_A,Strategy_A,PCE Range,>= 15.0%,115,M1,2.832,-2.7936,0.887
+Strategy_A,Strategy_A,PCE Range,>= 15.0%,115,M2A,2.7267,-2.6733,0.887
+Strategy_A,Strategy_A,PCE Range,>= 15.0%,115,M3,2.3524,-2.2391,0.8696
+Strategy_B,Strategy_B,PCE Range,< 5.0%,2325,M0,2.1211,2.0122,0.9527
+Strategy_B,Strategy_B,PCE Range,< 5.0%,2325,M1,2.1424,2.0375,0.9613
+Strategy_B,Strategy_B,PCE Range,< 5.0%,2325,M2A,2.0427,1.9383,0.9751
+Strategy_B,Strategy_B,PCE Range,< 5.0%,2325,M3,1.7396,1.499,0.9617
+Strategy_B,Strategy_B,PCE Range,5.0% - 10.0%,974,M0,1.9966,-0.518,0.9671
+Strategy_B,Strategy_B,PCE Range,5.0% - 10.0%,974,M1,1.849,-0.2947,0.9754
+Strategy_B,Strategy_B,PCE Range,5.0% - 10.0%,974,M2A,1.8587,-0.2914,0.9815
+Strategy_B,Strategy_B,PCE Range,5.0% - 10.0%,974,M3,1.9343,-0.5072,0.9682
+Strategy_B,Strategy_B,PCE Range,10.0% - 15.0%,427,M0,2.6232,-2.4814,0.8946
+Strategy_B,Strategy_B,PCE Range,10.0% - 15.0%,427,M1,2.5419,-2.3554,0.9063
+Strategy_B,Strategy_B,PCE Range,10.0% - 15.0%,427,M2A,2.4596,-2.2795,0.9251
+Strategy_B,Strategy_B,PCE Range,10.0% - 15.0%,427,M3,2.5485,-2.3483,0.8712
+Strategy_B,Strategy_B,PCE Range,>= 15.0%,71,M0,6.3272,-6.3272,0.4507
+Strategy_B,Strategy_B,PCE Range,>= 15.0%,71,M1,5.8817,-5.8817,0.507
+Strategy_B,Strategy_B,PCE Range,>= 15.0%,71,M2A,5.9701,-5.9494,0.5352
+Strategy_B,Strategy_B,PCE Range,>= 15.0%,71,M3,5.2601,-5.2539,0.5915
+Strategy_C1,Strategy_C1,PCE Range,< 5.0%,174,M0,2.3622,2.0151,1.0
+Strategy_C1,Strategy_C1,PCE Range,< 5.0%,174,M1,2.3976,2.1401,0.9885
+Strategy_C1,Strategy_C1,PCE Range,< 5.0%,174,M2A,2.3233,2.0657,1.0
+Strategy_C1,Strategy_C1,PCE Range,< 5.0%,174,M3,2.1833,1.9088,0.9828
+Strategy_C1,Strategy_C1,PCE Range,5.0% - 10.0%,85,M0,2.4614,-2.0346,1.0
+Strategy_C1,Strategy_C1,PCE Range,5.0% - 10.0%,85,M1,2.0102,-1.4822,1.0
+Strategy_C1,Strategy_C1,PCE Range,5.0% - 10.0%,85,M2A,2.0054,-1.429,1.0
+Strategy_C1,Strategy_C1,PCE Range,5.0% - 10.0%,85,M3,2.0778,-1.4927,1.0
+Strategy_C1,Strategy_C1,PCE Range,10.0% - 15.0%,19,M0,4.46,-4.3249,1.0
+Strategy_C1,Strategy_C1,PCE Range,10.0% - 15.0%,19,M1,3.3731,-3.2835,1.0
+Strategy_C1,Strategy_C1,PCE Range,10.0% - 15.0%,19,M2A,3.1287,-3.0927,1.0
+Strategy_C1,Strategy_C1,PCE Range,10.0% - 15.0%,19,M3,3.4219,-3.4219,1.0
+Strategy_C1,Strategy_C1,PCE Range,>= 15.0%,6,M0,4.3364,-4.3364,0.8333
+Strategy_C1,Strategy_C1,PCE Range,>= 15.0%,6,M1,4.9062,-4.9062,0.8333
+Strategy_C1,Strategy_C1,PCE Range,>= 15.0%,6,M2A,4.6578,-4.6578,0.8333
+Strategy_C1,Strategy_C1,PCE Range,>= 15.0%,6,M3,5.3393,-5.3393,0.8333
+Strategy_C2,Strategy_C2,PCE Range,< 5.0%,791,M0,2.2691,1.9763,0.89
+Strategy_C2,Strategy_C2,PCE Range,< 5.0%,791,M1,2.1187,1.8075,0.8862
+Strategy_C2,Strategy_C2,PCE Range,< 5.0%,791,M2A,2.121,1.8259,0.8875
+Strategy_C2,Strategy_C2,PCE Range,< 5.0%,791,M3,2.1842,1.8497,0.8799
+Strategy_C2,Strategy_C2,PCE Range,5.0% - 10.0%,698,M0,1.9219,-0.4789,0.9341
+Strategy_C2,Strategy_C2,PCE Range,5.0% - 10.0%,698,M1,1.7783,-0.3217,0.937
+Strategy_C2,Strategy_C2,PCE Range,5.0% - 10.0%,698,M2A,1.8269,-0.2954,0.9484
+Strategy_C2,Strategy_C2,PCE Range,5.0% - 10.0%,698,M3,1.766,-0.2846,0.9355
+Strategy_C2,Strategy_C2,PCE Range,10.0% - 15.0%,373,M0,2.6025,-2.02,0.8713
+Strategy_C2,Strategy_C2,PCE Range,10.0% - 15.0%,373,M1,2.4052,-1.8614,0.8338
+Strategy_C2,Strategy_C2,PCE Range,10.0% - 15.0%,373,M2A,2.448,-1.8787,0.8686
+Strategy_C2,Strategy_C2,PCE Range,10.0% - 15.0%,373,M3,2.4504,-1.8361,0.8686
+Strategy_C2,Strategy_C2,PCE Range,>= 15.0%,205,M0,3.3203,-3.2244,0.7366
+Strategy_C2,Strategy_C2,PCE Range,>= 15.0%,205,M1,2.9648,-2.8399,0.7512
+Strategy_C2,Strategy_C2,PCE Range,>= 15.0%,205,M2A,2.7554,-2.6929,0.8293
+Strategy_C2,Strategy_C2,PCE Range,>= 15.0%,205,M3,2.8156,-2.6721,0.7561

@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-11-25 00:36:29",
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "sklearn": "1.9.1",
+    "rdkit": "2026.09.2",
+    "n_jobs": 1
+  },
+  "dataset_sha256": "ffbcd6e9dc60f94d7bce037b8fba8c0e23e503b5a32047e76d40de1027bc3897",
+  "seeds": {
+    "seed_strategy_a": 7701,
+    "seed_strategy_b": 7702,
+    "seed_strategy_c2": 7703,
+    "model_seed": 8888
+  },
+  "feature_counts": {
+    "M0": 22,
+    "M1": 50,
+    "M2A": 37,
+    "M3": 44
+  },
+  "partition_counts": {
+    "Strategy_A": {
+      "train_records": 15750,
+      "cal_records": 5236,
+      "test_records": 1481,
+      "test_donor_scaffolds": 216
+    },
+    "Strategy_B": {
+      "train_records": 17658,
+      "cal_records": 1012,
+      "test_records": 3797,
+      "test_acceptor_scaffolds": 163
+    },
+    "Strategy_C1": {
+      "train_records": 13324,
+      "cal_records": 260,
+      "test_records": 284,
+      "test_scaffold_pairs": 92,
+      "status": "strict_dual_scaffold_holdout"
+    },
+    "Strategy_C2": {
+      "train_records": 16537,
+      "cal_records": 3863,
+      "test_records": 2067,
+      "test_scaffold_pairs": 565
+    }
+  }
+}

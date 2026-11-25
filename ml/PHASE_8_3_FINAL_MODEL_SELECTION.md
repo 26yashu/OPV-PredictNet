@@ -1,0 +1,71 @@
+# OPV-PredictNet — Phase 8.3: Final Model Selection & Consolidated Evidence
+
+**Date:** 2026-11-25  
+**Scope:** Multi-phase evidence consolidation (Phases 5 through 8.2.1) and definitive, regime-specific research role assignment for candidate models **M0, M1, M2A, and M3**.  
+**Numerical Source of Truth:** Original frozen CSV and JSON artifacts in `ml/results/` only.  
+**Policy Rule:** No universal model winner is selected. All roles are restricted to **experimental research estimates** within verified scopes.
+
+---
+
+## 1. Consolidated Evidence Audit Across Phases 5 through 8.2.1
+
+Every quantitative metric below is taken directly from the verified JSON/CSV artifacts generated during each experimental phase. Superseded or misquoted figures from earlier drafts are excluded.
+
+### Table 1: Master Cross-Phase Benchmark Summary (`N = 22,467` OPV-DB v1.1.0 Dataset)
+
+| Phase & Artifact | Evaluation Split & Sampling Design | Model / Config | Feats | Test $N$ | MAE (pp) | RMSE (pp) | $R^2$ | 90% Width (pp) | 90% Cov | Primary Audit Finding |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Phase 5** ([phase_5_summary.json](file:///c:/Users/DELL/OPV-PredictNet/ml/results/phase_5_summary.json)) | 5-Fold Pair-Grouped CV (seed 42) | DummyRegressor | — | 22,467 (CV) | 5.1369 | 5.8780 | -0.1217 | — | — | Mean baseline fails to explain variance. |
+| | 5-Fold Pair-Grouped CV (seed 42) | Baseline RF (`n=100`) | 22 | 22,467 (CV) | 2.0628 | 2.9466 | 0.7099 | — | — | Establishes 22-descriptor molecular signal. |
+| | 5-Fold DOI-Grouped CV | Baseline RF (`n=100`) | 22 | 22,467 (CV) | 1.9626 | 2.7616 | 0.7721 | — | — | Cross-paper transfer on known scaffolds. |
+| | 5-Fold Scaffold Splits (Donor / Acceptor / Pair) | Baseline RF (`n=100`) | 22 | 22,467 (CV) | 2.488 / 2.282 / 2.350 | 3.201 / 3.036 / 3.092 | 0.418 / 0.341 / 0.479 | — | — | First indication of scaffold degradation. |
+| **Phase 6.1** ([phase_6_1_summary.json](file:///c:/Users/DELL/OPV-PredictNet/ml/results/phase_6_1_summary.json)) | 5x3 Nested Pair-Grouped CV (pooled) | Phase 5 Baseline RF | 22 | 22,467 (CV) | 2.0628 | 2.9546 | 0.7395 | — | — | Tuning (`RF_Config_2/4`) gave MAE `2.1265` (`p=0.722`); default RF retained. |
+| **Phase 7.1** ([phase_7_1_final_test_metrics.json](file:///c:/Users/DELL/OPV-PredictNet/ml/results/phase_7_1_final_test_metrics.json)) | Pair Split (seed 42; 1 rec/pair Cal=946, Test=946) | M0 RF (Unnormalized) | 22 | 946 | 2.2202 | 2.9170 | 0.5859 | 8.8372 | 89.11% | High-PCE ($\ge 15\%$, $N=63$) unnorm cov drops to **77.78%**. |
+| | Pair Split (seed 42; Locally Normalized) | M0 RF (Loc. Norm.) | 22 | 946 | 2.2202 | 2.9170 | 0.5859 | 8.6732 (med) | 87.74% | Loc. norm improves high-PCE cov (`92.06%`), undercovers repeated pairs (`84.35%`). |
+| **Phase 8.1** ([phase_8_1_model_metrics.csv](file:///c:/Users/DELL/OPV-PredictNet/ml/results/phase_8_1_model_metrics.csv), [phase_8_1_interval_metrics.csv](file:///c:/Users/DELL/OPV-PredictNet/ml/results/phase_8_1_interval_metrics.csv)) | Held-Out Material Pairs (seed 8888; 1 rec/pair; 69.7% share both scaffolds w/ train) | **M0** (Molecular RF) | 22 | 946 | 2.1727 | 2.9026 | 0.6110 | 8.9671 | 90.06% | Pair baseline; bias `+0.0245 pp`. |
+| | | **M1** (OHE RF) | 50 | 946 | **2.0321** | 2.7837 | 0.6422 | 8.6488 | 90.17% | Lowest test MAE on held-out material pairs (`-0.1407` vs M0). |
+| | | M2 (Process+Flags RF) | 44 | 946 | 2.0722 | 2.8289 | 0.6305 | 8.7298 | 90.06% | Not preferred vs M2A (flags add no value). |
+| | | **M2A** (No-Flags RF) | 37 | 946 | 2.0689 | 2.8184 | 0.6332 | 8.6600 | 90.38% | Outperforms M2; clean continuous/regime baseline. |
+| | | **M3** (Native-NaN HGBT) | 44 | 946 | 2.0540 | **2.7525** | **0.6502** | **8.4283** | 88.69% | Lowest RMSE & highest $R^2$; `1.27s` fit; slight undercoverage (`88.69%`). |
+| **Phase 8.2 / 8.2.1** ([phase_8_2_scaffold_metrics.csv](file:///c:/Users/DELL/OPV-PredictNet/ml/results/phase_8_2_scaffold_metrics.csv), [phase_8_2_interval_metrics.csv](file:///c:/Users/DELL/OPV-PredictNet/ml/results/phase_8_2_interval_metrics.csv)) | **Strategy A:** Unseen Donor Scaffolds (unweighted rows, seed 7701) | M0 / M1 / M2A / **M3** | 22–50 | 1,481 | 2.230 / 2.092 / 2.147 / **2.003** | 2.857 / 2.688 / 2.740 / **2.648** | 0.584 / 0.632 / 0.618 / **0.643** | 13.84 / 10.25 / 10.48 / **9.26** | 97.6 / 93.8 / 94.5 / 92.6% | Observed sample gain for M1 & M3 holds across 5 separate one-way cluster-bootstrap sensitivity margins (not joint crossed-dependence confirmation). |
+| | **Strategy B:** Unseen Acceptor Scaffolds (`61.2%` PC61BM, seed 7702) | M0 / M1 / M2A / M3 | 22–50 | 3,797 | 2.224 / 2.182 / 2.116 / 1.946 | 2.869 / 2.865 / 2.765 / 2.607 | 0.440 / 0.442 / 0.480 / 0.538 | 10.84 / 11.15 / 11.83 / 10.38 | 94.1 / 95.0 / 96.3 / 94.6% | **Inconclusive** vs M0 under acceptor clustering; High-PCE cov **45.1%–59.2%**. |
+| | **Strategy C1:** Strict Dual-Scaffold Holdout (`8,599` cross-edges dropped) | M0 / M1 / M2A / M3 | 22–50 | 284 | 2.574 / 2.400 / 2.331 / 2.301 | 3.160 / 3.004 / 2.862 / 2.873 | **0.079 / 0.167 / 0.244 / 0.239** | 16.52 / 16.47 / 18.62 / 15.69 | 99.7 / 98.9 / 99.7 / 98.6% | **$R^2$ collapse**; CIs cross 0 under donor/acceptor clustering; severe Cal-Test shift. |
+| | **Strategy C2:** Unseen Scaffold Pairs (`58.4%` both indiv. seen, seed 7703) | M0 / M1 / M2A / M3 | 22–50 | 2,067 | 2.316 / **2.139** / 2.144 / 2.154 | 3.057 / 2.891 / 2.889 / **2.853** | 0.617 / 0.658 / 0.658 / **0.667** | 9.30 / 8.57 / 8.77 / **8.28** | 88.6 / 88.1 / 89.9 / 88.4% | Undercovers at 80% (`75.7%–78.5%`) and 90%; directional gain over M0. |
+
+### Key Consolidated Reconciliation Insights
+1. **Why Phase 8.1 and Phase 8.2 Differ Beyond Chemistry:** Phase 8.1 sampled 1 record per material-name pair ($N=946$, $\text{Var}(y)=21.66$), whereas Phase 8.2 evaluated all unweighted records per scaffold split. Target variance compression in C1 ($\text{Var}(y)=10.84$) and hub concentration in Strategy B (`PC61BM` = 2,323/3,797 rows) explain why MAE changes modestly while $R^2$ collapses and cluster-level inference breaks down.
+2. **M2 Ablation Resolution:** Phase 8.1 demonstrated that omitting explicit `missing_*` binary indicators (M2A, 37 features, `MAE=2.0689`, `R²=0.6332`) slightly outperformed M2 with flags (44 features, `MAE=2.0722`, `R²=0.6305`). M2 is archived as a historical ablation reference and excluded from active integration candidates.
+3. **Why No Universal Winner Exists:** M1 achieves the lowest sample MAE on Phase 8.1 (`2.0321`) and Strategy C2 (`2.1393`), M3 achieves the lowest sample RMSE and highest $R^2$ across Phase 8.1 (`0.6502`), Strategy A (`0.6428`), and Strategy C2 (`0.6667`), and M2A achieves the cleanest continuous parameterization without categorical zero-vector barriers (`MAE=1.9000` on $k=0$, `1.9044` on $k=1$ in Phase 8.1).
+
+---
+
+## 2. Final Evidence-Based Model Roles
+
+### 2.1 Candidate Definitions
+- **M0 (22 features, `RandomForestRegressor`):** Molecular-descriptor-only baseline. Uses 22 deterministic RDKit physicochemical descriptors (`donor_*`, `acceptor_*`, and 4 pairwise differences/totals). Appropriate **only** as a reference baseline or when zero fabrication metadata is supplied for familiar chemical families.
+- **M1 (50 features, `RandomForestRegressor`):** Categorical + continuous processing model (`22` molecular + `5` numeric/presence + `23` training-fitted one-hot columns via `map_*_nominal` $\to$ `OneHotEncoder(handle_unknown='ignore')`). Achieves lowest sample MAE when standard laboratory vocabularies (`chloroform`, `chlorobenzene`, `o-DCB`, `DIO`, `CN`, `PEDOT:PSS`, `MoO3`, `ZnO`, `PFN-Br`, `PDINN`, `Ca`) are used. Crucially, `map_*_nominal` intercepts all unrecognized non-null strings into the training-fitted `'other'` bucket (`*_other = 1.0`), so the pipeline **cannot distinguish rare known training categories from brand-new unknown strings**; likewise, `map_additive_nominal` maps `'none'`/`'neat'`/`'0'`/`'no'` to `'missing'` (`additive_missing = 1.0`), conflating additive-free formulations with unreported metadata.
+- **M2A (37 features, `RandomForestRegressor`):** Continuous & physical-regime processing model (`22` molecular + `4` continuous normalized + `7` physical regimes + `4` physical interface/interaction terms; no `missing_*` flags). Uses frozen $D_{\text{train}}$ medians for missing continuous values. Preferred over M1 for **continuous formulation parameter sweeps** (thickness, annealing temperature, D:A ratio, solvent boiling point, work functions) where discrete OHE boundaries create flat step artifacts.
+- **M3 (44 features, `HistGradientBoostingRegressor`):** Native-missing-value processing model (`22` molecular + `4` continuous normalized + `7` `missing_*` indicators + `7` physical regimes + `4` interface constants). Retains `IEEE 754 NaN` in unobserved continuous/interface fields for native split routing during tree traversal. Achieves lowest sample RMSE and highest $R^2$ on known scaffold pairings and unseen donor scaffolds, with fast training (`~1.0–2.3s`), though exhibiting slight positive global bias (`+0.11 pp` in Phase 8.1) and marginal 90% undercoverage (`88.69%` in Phase 8.1; `88.44%` in C2). *(Note: Phase 8.1's `reg_ann` logic is the canonical reference for `regime_thermal_annealed`, as Phase 8.2's `extract_m3` contained an unassigned-variable `NameError` defaulting `regime_thermal_annealed` to `0`.)*
+
+### 2.2 Regime-Specific Appropriateness Matrix
+
+| Operational Regime | Appropriate Model(s) | Forbidden / Inappropriate Models | Evidentiary Basis & Mandatory Operational Caveats |
+| :--- | :--- | :--- | :--- |
+| **1. Familiar Chemical Scaffolds & Held-Out Pairs** (Phase 8.1 & Strategy C2) | **M1** (lowest MAE on standard lab categories)<br>**M3** (lowest RMSE / highest $R^2$, native NaN)<br>**M2A** (continuous parameter sweeps)<br>**M0** (molecular-only baseline) | **M2** (historical ablation only; superseded by M2A) | All three processing models show exploratory directional gains over M0 across all 4 separate one-way cluster-bootstrap margins in Phase 8.1 (`pair`, `donor`, `acceptor`, `DOI`) and all 5 in C2 (`+ scaffold_pair`). Research estimate only; 90% widths remain `8.28–9.30 pp`, and 80% coverage drops to `75.7%–78.5%` in C2. |
+| **2. Unseen Donor Scaffolds with Known Acceptors** (Strategy A) | **M3** (exploratory: MAE `2.0025`, `R²=0.6428`)<br>**M1** (exploratory: MAE `2.0916`, `R²=0.6318`) | **M2A** (CI vs M0 crosses zero `[-0.2387, +0.0456]`)<br>**M0** (inferior sample MAE/width) | **Three-tier distinction:** (1) *Observed held-out sample ($N=1,481$):* M3 & M1 beat M0 MAE (`2.2302`). (2) *Separate one-way cluster-bootstrap sensitivity analyses:* 95% CIs exclude zero across all 5 individual margins (`donor_scaffold`, `acceptor_scaffold`, `scaffold_pair`, `pair_id`, `doi_norm`). (3) *Joint crossed-dependence confirmation NOT established:* lacks simultaneous crossed-cluster variance over donor $\times$ acceptor $\times$ DOI and equal-weight per-scaffold evaluation, with 41.9% DOI overlap unresolved. **M1 and M3 are exploratory research candidates only.** |
+| **3. Unseen Acceptor Scaffolds with Known Donors** (Strategy B) | **None recommended for reliable prediction** *(M3/M2A/M1/M0 exploratory diagnostic only)* | **All models prohibited from superiority or screening claims** | Acceptor-scaffold cluster bootstrap 95% CIs cross zero for M1, M2A, and M3 (`[-0.3781, +0.0386]` for M3). `PC61BM` accounts for `61.18%` of test rows; M3 loses to M0 on major NFA clusters (`+0.184`, `+0.314 pp`). High-PCE coverage collapses to `45.1%–59.2%`. |
+| **4. Strict Dual-Scaffold Extrapolation** (Strategy C1) | **NONE** | **ALL MODELS (M0, M1, M2A, M3) STRICTLY PROHIBITED / REJECTED** | $R^2$ collapses to `0.0786` (M0), `0.1672` (M1), `0.2440` (M2A), `0.2385` (M3); CIs cross zero under donor/acceptor clustering; conformal 90% widths explode to `15.69–18.62 pp` with `98.6%–99.7%` non-exchangeable overcoverage. |
+| **5. Partial Processing Metadata** ($1 \le k \le 6$ fields supplied) | **M3** (High-Partial `k=4–5`: lowest MAE `1.8894 pp`; native NaN routing)<br>**M1** (Low-Partial `k=2–3`: lowest MAE `2.2964 pp`)<br>**M2A** (Sparse `k=1`: lowest MAE `1.9044 pp`) | **M0** (ignores supplied processing fields; routes only when $k=0$) | All partial-input patterns remain **exploratory** across the observed training distribution; arbitrary unobserved combinations ($2^7=128$) and unknown OHE vocabularies are untested. Completeness routing remains a research hypothesis (Phase 8.1.2). |
+| **6. High-PCE Candidate Discovery** ($\text{PCE} \ge 15.0\%$) | **NONE** | **ALL MODELS (M0, M1, M2A, M3) STRICTLY PROHIBITED** | Systematic negative bias (`-2.24` to `-6.33 pp`), high MAE (`2.35–6.33 pp`), and severe conformal undercoverage (`45.1%–59.2%` in Strategy B; `73.7%–82.9%` in C2; `81.3%–84.0%` in Phase 8.1). Tree ensembles shrink extreme predictions toward training means. |
+
+---
+
+## 3. Summary Decision: Active Integration Candidates (Research-Only)
+
+For future API/backend integration under strict Phase 8.3 governance (and **never** as production-certified predictors):
+1. **Default Molecular-Only Baseline ($k = 0$):** **`M0`** (22 features) — used exclusively when zero processing fields are supplied on familiar scaffolds.
+2. **Primary Processing-Conditional Candidates ($k \ge 1$):**
+   - **`M3`** (44 features, `HistGradientBoostingRegressor`): Primary research candidate when partial or mixed-completeness processing inputs are supplied (highest $R^2$ / lowest RMSE on Phase 8.1, Strategy A, and Strategy C2; native `NaN` handling without median masking).
+   - **`M1`** (50 features, `RandomForestRegressor`): Secondary research candidate for standard laboratory formulations matching the 23-column training vocabulary (lowest sample MAE on Phase 8.1 and Strategy C2).
+   - **`M2A`** (37 features, `RandomForestRegressor`): Secondary research candidate for continuous processing sensitivity sweeps (D:A blend fraction, thickness, annealing temperature, interface work functions) without discrete OHE jumps or `missing_*` indicator artifacts.
+3. **Retired / Archived:** **`M2`** (44 features RF) — preserved in experimental archives, not selected for integration because M2A achieved equal/better accuracy without redundant missingness flags.

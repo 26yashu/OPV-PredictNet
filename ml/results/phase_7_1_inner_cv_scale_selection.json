@@ -1,0 +1,15 @@
+{
+  "inner_folds": 5,
+  "unnormalized": {
+    "mean_coverage_90": 0.904708299830251,
+    "mean_median_width": 9.217000215309023,
+    "mean_winkler_score": 13.198397916176408
+  },
+  "locally_normalized": {
+    "mean_coverage_90": 0.9111944965603502,
+    "mean_median_width": 10.20419175577831,
+    "mean_winkler_score": 13.82668831165132
+  },
+  "winkler_delta_norm_minus_unnorm": 0.628290395474913,
+  "decision": "Lock and evaluate both Unnormalized (primary benchmark) and Locally Normalized in parallel on D_test."
+}

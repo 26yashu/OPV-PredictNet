@@ -1,0 +1,17 @@
+strategy_id,strategy,strategy_name,model_id,feature_count,fit_time_seconds,n_train,n_cal,n_test,test_n,mae,test_mae_pce,rmse,test_rmse_pce,r2,test_r2,bias,test_mean_signed_bias,pce_mean,pce_std
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M0,22,7.07,15750,5236,1481,1481,2.2302,2.2302,2.8574,2.8574,0.5839,0.5839,-0.293,-0.293,6.604,4.4299
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M1,50,18.52,15750,5236,1481,1481,2.0916,2.0916,2.688,2.688,0.6318,0.6318,-0.0716,-0.0716,6.604,4.4299
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M2A,37,14.95,15750,5236,1481,1481,2.147,2.147,2.7399,2.7399,0.6175,0.6175,-0.004,-0.004,6.604,4.4299
+Strategy_A,Strategy_A,Donor Scaffold Holdout,M3,44,1.32,15750,5236,1481,1481,2.0025,2.0025,2.6478,2.6478,0.6428,0.6428,-0.0285,-0.0285,6.604,4.4299
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M0,22,8.15,17658,1012,3797,3797,2.2243,2.2243,2.8694,2.8694,0.4396,0.4396,0.7019,0.7019,5.0301,3.8329
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M1,50,23.74,17658,1012,3797,3797,2.182,2.182,2.8645,2.8645,0.4415,0.4415,0.7972,0.7972,5.0301,3.8329
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M2A,37,16.43,17658,1012,3797,3797,2.1158,2.1158,2.7652,2.7652,0.4795,0.4795,0.7445,0.7445,5.0301,3.8329
+Strategy_B,Strategy_B,Acceptor Scaffold Holdout,M3,44,2.31,17658,1012,3797,3797,1.9463,1.9463,2.6066,2.6066,0.5375,0.5375,0.4255,0.4255,5.0301,3.8329
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M0,22,6.36,13324,260,284,284,2.574,2.574,3.1599,3.1599,0.0786,0.0786,0.2447,0.2447,4.8419,3.292
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M1,50,13.89,13324,260,284,284,2.3999,2.3999,3.0042,3.0042,0.1672,0.1672,0.5443,0.5443,4.8419,3.292
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M2A,37,8.65,13324,260,284,284,2.3314,2.3314,2.8623,2.8623,0.244,0.244,0.5326,0.5326,4.8419,3.292
+Strategy_C1,Strategy_C1,Strict Dual-Scaffold Holdout,M3,44,1.0,13324,260,284,284,2.3013,2.3013,2.8727,2.8727,0.2385,0.2385,0.381,0.381,4.8419,3.292
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M0,22,6.55,16537,3863,2067,2067,2.3163,2.3163,3.0573,3.0573,0.6172,0.6172,-0.0898,-0.0898,7.3173,4.9412
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M1,50,16.82,16537,3863,2067,2067,2.1393,2.1393,2.8906,2.8906,0.6578,0.6578,-0.0345,-0.0345,7.3173,4.9412
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M2A,37,13.08,16537,3863,2067,2067,2.1436,2.1436,2.8887,2.8887,0.6582,0.6582,-0.0071,-0.0071,7.3173,4.9412
+Strategy_C2,Strategy_C2,Scaffold-Pair Holdout,M3,44,1.68,16537,3863,2067,2067,2.1536,2.1536,2.8526,2.8526,0.6667,0.6667,0.0154,0.0154,7.3173,4.9412

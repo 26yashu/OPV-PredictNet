@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "python_version": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "random_state": 42
+  },
+  "dataset_architecture_audit": {
+    "total_records": 22467,
+    "conventional_count": 9284,
+    "inverted_count": 5073,
+    "unspecified_count": 8110,
+    "tandem_records_explicit": 0,
+    "single_junction_explicit": 76,
+    "with_additive": 7942,
+    "with_annealing": 5523,
+    "with_thickness": 6687
+  },
+  "inner_fold_selection": {
+    "selection_strategy": "3-Fold GroupKFold strictly within Training Fold 1",
+    "evaluated_configs": [
+      {
+        "config_id": "RF_Config_0_Baseline",
+        "description": "Phase 5 Baseline: n=100, max_depth=None, min_samples_leaf=1, max_features=1.0",
+        "inner_cv_mae": 2.1028,
+        "inner_cv_rmse": 2.9023,
+        "inner_cv_r2": 0.7466
+      },
+      {
+        "config_id": "RF_Config_1_DepthReg",
+        "description": "Depth regularized: n=100, max_depth=20, min_samples_leaf=2, max_features=0.8",
+        "inner_cv_mae": 2.1201,
+        "inner_cv_rmse": 2.8702,
+        "inner_cv_r2": 0.7525
+      },
+      {
+        "config_id": "RF_Config_2_FeatureSqrt",
+        "description": "Decorrelated features: n=200, max_depth=None, min_samples_leaf=2, max_features='sqrt'",
+        "inner_cv_mae": 2.1423,
+        "inner_cv_rmse": 2.8586,
+        "inner_cv_r2": 0.7544
+      },
+      {
+        "config_id": "RF_Config_3_LeafReg",
+        "description": "Leaf regularized: n=100, max_depth=None, min_samples_split=4, min_samples_leaf=4, max_features=0.8",
+        "inner_cv_mae": 2.1563,
+        "inner_cv_rmse": 2.8651,
+        "inner_cv_r2": 0.7535
+      },
+      {
+        "config_id": "RF_Config_4_EnsembleScaled",
+        "description": "Scaled ensemble: n=200, max_depth=None, min_samples_split=2, min_samples_leaf=1, max_features=0.8",
+        "inner_cv_mae": 2.0974,
+        "inner_cv_rmse": 2.8955,
+        "inner_cv_r2": 0.7478
+      }
+    ],
+    "selected_config_id": "RF_Config_4_EnsembleScaled"
+  },
+  "outer_evaluation_comparison": [
+    {
+      "config_id": "RF_Config_0_Baseline",
+      "description": "Phase 5 Baseline: n=100, max_depth=None, min_samples_leaf=1, max_features=1.0",
+      "mean_fold_mae": 2.0628,
+      "std_fold_mae": 0.1134,
+      "mean_fold_rmse": 2.9466,
+      "std_fold_rmse": 0.217,
+      "mean_fold_r2": 0.7099,
+      "std_fold_r2": 0.0821,
+      "pooled_mae": 2.0628,
+      "pooled_rmse": 2.9546,
+      "pooled_r2": 0.7395,
+      "total_fit_time_seconds": 14.74
+    },
+    {
+      "config_id": "RF_Config_1_DepthReg",
+      "description": "Depth regularized: n=100, max_depth=20, min_samples_leaf=2, max_features=0.8",
+      "mean_fold_mae": 2.086,
+      "std_fold_mae": 0.0792,
+      "mean_fold_rmse": 2.9214,
+      "std_fold_rmse": 0.2039,
+      "mean_fold_r2": 0.7159,
+      "std_fold_r2": 0.0779,
+      "pooled_mae": 2.086,
+      "pooled_rmse": 2.9285,
+      "pooled_r2": 0.7441,
+      "total_fit_time_seconds": 10.26
+    },
+    {
+      "config_id": "RF_Config_2_FeatureSqrt",
+      "description": "Decorrelated features: n=200, max_depth=None, min_samples_leaf=2, max_features='sqrt'",
+      "mean_fold_mae": 2.1218,
+      "std_fold_mae": 0.1157,
+      "mean_fold_rmse": 2.9229,
+      "std_fold_rmse": 0.1699,
+      "mean_fold_r2": 0.7181,
+      "std_fold_r2": 0.0674,
+      "pooled_mae": 2.1218,
+      "pooled_rmse": 2.9278,
+      "pooled_r2": 0.7442,
+      "total_fit_time_seconds": 9.14
+    },
+    {
+      "config_id": "RF_Config_3_LeafReg",
+      "description": "Leaf regularized: n=100, max_depth=None, min_samples_split=4, min_samples_leaf=4, max_features=0.8",
+      "mean_fold_mae": 2.1287,
+      "std_fold_mae": 0.1187,
+      "mean_fold_rmse": 2.9333,
+      "std_fold_rmse": 0.2047,
+      "mean_fold_r2": 0.716,
+      "std_fold_r2": 0.0708,
+      "pooled_mae": 2.1287,
+      "pooled_rmse": 2.9404,
+      "pooled_r2": 0.742,
+      "total_fit_time_seconds": 9.44
+    },
+    {
+      "config_id": "RF_Config_4_EnsembleScaled",
+      "description": "Scaled ensemble: n=200, max_depth=None, min_samples_split=2, min_samples_leaf=1, max_features=0.8",
+      "mean_fold_mae": 2.0532,
+      "std_fold_mae": 0.1056,
+      "mean_fold_rmse": 2.9289,
+      "std_fold_rmse": 0.2182,
+      "mean_fold_r2": 0.7131,
+      "std_fold_r2": 0.0824,
+      "pooled_mae": 2.0532,
+      "pooled_rmse": 2.937,
+      "pooled_r2": 0.7426,
+      "total_fit_time_seconds": 23.39
+    }
+  ],
+  "uncertainty_audit": {
+    "pearson_r_uncertainty_vs_abs_error": 0.1627,
+    "uncalibrated_nominal_68_coverage": 0.3835,
+    "uncalibrated_nominal_95_coverage": 0.5766,
+    "uncalibrated_nominal_99_coverage": 0.6613,
+    "empirical_multiplier_for_68_coverage": 3.3466,
+    "empirical_multiplier_for_95_coverage": 40.9441
+  }
+}

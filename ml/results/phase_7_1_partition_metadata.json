@@ -1,0 +1,30 @@
+{
+  "dataset_total_records": 22467,
+  "dataset_total_pairs": 4730,
+  "random_seed_partition": 42,
+  "random_seed_cal_sample": 42,
+  "random_seed_test_sample": 43,
+  "train": {
+    "records": 11786,
+    "pairs": 2838,
+    "singletons": 1669,
+    "repeated_pairs": 1169,
+    "max_records_in_pair": 1334
+  },
+  "cal": {
+    "records_total": 2746,
+    "pairs": 946,
+    "singletons": 552,
+    "repeated_pairs": 394,
+    "max_records_in_pair": 156,
+    "sampled_records": 946
+  },
+  "test": {
+    "records_total": 7935,
+    "pairs": 946,
+    "singletons": 569,
+    "repeated_pairs": 377,
+    "max_records_in_pair": 2658,
+    "sampled_records": 946
+  }
+}

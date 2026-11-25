@@ -1,0 +1,94 @@
+{
+  "pce_tiers": {
+    "< 5.0% PCE": {
+      "sample_count": 347,
+      "fraction_of_test": 0.3668076109936575,
+      "unnormalized_90_coverage": 0.8876080691642652,
+      "unnormalized_90_median_width": 8.83718811188811,
+      "locally_normalized_90_coverage": 0.8933717579250721,
+      "locally_normalized_90_median_width": 8.277353931571959
+    },
+    "5.0% - 10.0% PCE": {
+      "sample_count": 320,
+      "fraction_of_test": 0.3382663847780127,
+      "unnormalized_90_coverage": 0.91875,
+      "unnormalized_90_median_width": 8.83718811188811,
+      "locally_normalized_90_coverage": 0.871875,
+      "locally_normalized_90_median_width": 8.752761988380579
+    },
+    "10.0% - 15.0% PCE": {
+      "sample_count": 216,
+      "fraction_of_test": 0.22832980972515857,
+      "unnormalized_90_coverage": 0.8888888888888888,
+      "unnormalized_90_median_width": 8.83718811188811,
+      "locally_normalized_90_coverage": 0.8472222222222222,
+      "locally_normalized_90_median_width": 9.008543474772498
+    },
+    ">= 15.0% PCE": {
+      "sample_count": 63,
+      "fraction_of_test": 0.06659619450317125,
+      "unnormalized_90_coverage": 0.7777777777777778,
+      "unnormalized_90_median_width": 8.83718811188811,
+      "locally_normalized_90_coverage": 0.9206349206349206,
+      "locally_normalized_90_median_width": 8.94828399414595
+    }
+  },
+  "pair_frequency": {
+    "Singleton Pairs (N_lit = 1)": {
+      "sample_count": 569,
+      "fraction_of_test": 0.6014799154334038,
+      "unnormalized_90_coverage": 0.8945518453427065,
+      "unnormalized_90_median_width": 8.83718811188811,
+      "locally_normalized_90_coverage": 0.8998242530755711,
+      "locally_normalized_90_median_width": 8.899388735329364
+    },
+    "Repeated Pairs (N_lit > 1)": {
+      "sample_count": 377,
+      "fraction_of_test": 0.3985200845665962,
+      "unnormalized_90_coverage": 0.8859416445623343,
+      "unnormalized_90_median_width": 8.83718811188811,
+      "locally_normalized_90_coverage": 0.843501326259947,
+      "locally_normalized_90_median_width": 8.312642302930115
+    }
+  },
+  "device_architecture": {
+    "conventional": {
+      "sample_count": 400,
+      "unnormalized_90_coverage": 0.9175,
+      "locally_normalized_90_coverage": 0.91
+    },
+    "inverted": {
+      "sample_count": 241,
+      "unnormalized_90_coverage": 0.8796680497925311,
+      "locally_normalized_90_coverage": 0.8589211618257261
+    },
+    "Unknown": {
+      "sample_count": 189,
+      "unnormalized_90_coverage": 0.8783068783068783,
+      "locally_normalized_90_coverage": 0.8677248677248677
+    }
+  },
+  "high_pce_slices": {
+    "PCE >= 12.0%": {
+      "threshold_PCE": 12.0,
+      "sample_count": 161,
+      "fraction_of_test": 0.17019027484143764,
+      "unnormalized_90_coverage": 0.8385093167701864,
+      "locally_normalized_90_coverage": 0.8757763975155279
+    },
+    "PCE >= 14.0%": {
+      "threshold_PCE": 14.0,
+      "sample_count": 84,
+      "fraction_of_test": 0.08879492600422834,
+      "unnormalized_90_coverage": 0.7857142857142857,
+      "locally_normalized_90_coverage": 0.9047619047619048
+    },
+    "PCE >= 15.0%": {
+      "threshold_PCE": 15.0,
+      "sample_count": 63,
+      "fraction_of_test": 0.06659619450317125,
+      "unnormalized_90_coverage": 0.7777777777777778,
+      "locally_normalized_90_coverage": 0.9206349206349206
+    }
+  }
+}

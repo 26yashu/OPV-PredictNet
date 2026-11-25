@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "python_version": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "rdkit_version": "2026.09.2",
+    "sklearn_version": "1.9.1",
+    "pandas_version": "3.1.1",
+    "numpy_version": "2.4.6",
+    "random_state": 42
+  },
+  "dataset": {
+    "path": "ml/data/raw/extracted_opvdb_v1.1.0/data/opv_devices_strict_molecular_benchmark.csv",
+    "total_records": 22467,
+    "target": "pce",
+    "features": [
+      "donor_mw",
+      "donor_logp",
+      "donor_tpsa",
+      "donor_hbd",
+      "donor_hba",
+      "donor_rotatable_bonds",
+      "donor_aromatic_rings",
+      "donor_fraction_csp3",
+      "donor_heavy_atoms",
+      "acceptor_mw",
+      "acceptor_logp",
+      "acceptor_tpsa",
+      "acceptor_hbd",
+      "acceptor_hba",
+      "acceptor_rotatable_bonds",
+      "acceptor_aromatic_rings",
+      "acceptor_fraction_csp3",
+      "acceptor_heavy_atoms",
+      "mw_diff",
+      "logp_diff",
+      "tpsa_total",
+      "aromatic_rings_total"
+    ],
+    "n_features": 22
+  },
+  "rf_hyperparameters": {
+    "n_estimators": 100,
+    "max_depth": null,
+    "min_samples_split": 2,
+    "min_samples_leaf": 1,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "splits_summary": {
+    "Pair_Grouped_5Fold": {
+      "DummyRegressor": {
+        "mae_mean": 5.1369,
+        "mae_std": 0.3208,
+        "rmse_mean": 5.878,
+        "rmse_std": 0.2913,
+        "r2_mean": -0.1217,
+        "r2_std": 0.1888
+      },
+      "RandomForestRegressor": {
+        "mae_mean": 2.0628,
+        "mae_std": 0.1268,
+        "rmse_mean": 2.9466,
+        "rmse_std": 0.2426,
+        "r2_mean": 0.7099,
+        "r2_std": 0.0918
+      }
+    },
+    "DOI_Grouped_5Fold": {
+      "DummyRegressor": {
+        "mae_mean": 5.0544,
+        "mae_std": 0.0815,
+        "rmse_mean": 5.7893,
+        "rmse_std": 0.0708,
+        "r2_mean": -0.0004,
+        "r2_std": 0.0005
+      },
+      "RandomForestRegressor": {
+        "mae_mean": 1.9626,
+        "mae_std": 0.0737,
+        "rmse_mean": 2.7616,
+        "rmse_std": 0.1147,
+        "r2_mean": 0.7721,
+        "r2_std": 0.0185
+      }
+    },
+    "Combined_Scaffold_Pair_5Fold": {
+      "DummyRegressor": {
+        "mae_mean": 5.5143,
+        "mae_std": 1.4623,
+        "rmse_mean": 6.2396,
+        "rmse_std": 1.3074,
+        "r2_mean": -1.3468,
+        "r2_std": 2.0228
+      },
+      "RandomForestRegressor": {
+        "mae_mean": 2.3498,
+        "mae_std": 0.2779,
+        "rmse_mean": 3.0916,
+        "rmse_std": 0.3323,
+        "r2_mean": 0.4788,
+        "r2_std": 0.2855
+      }
+    },
+    "Donor_Scaffold_Holdout_5Fold": {
+      "DummyRegressor": {
+        "mae_mean": 5.8193,
+        "mae_std": 1.2059,
+        "rmse_mean": 6.5352,
+        "rmse_std": 1.1077,
+        "r2_mean": -1.7202,
+        "r2_std": 1.4844
+      },
+      "RandomForestRegressor": {
+        "mae_mean": 2.4875,
+        "mae_std": 0.6343,
+        "rmse_mean": 3.201,
+        "rmse_std": 0.6755,
+        "r2_mean": 0.4176,
+        "r2_std": 0.1324
+      }
+    },
+    "Acceptor_Scaffold_Holdout_5Fold": {
+      "DummyRegressor": {
+        "mae_mean": 5.6781,
+        "mae_std": 2.0603,
+        "rmse_mean": 6.387,
+        "rmse_std": 1.8839,
+        "r2_mean": -2.3392,
+        "r2_std": 2.3233
+      },
+      "RandomForestRegressor": {
+        "mae_mean": 2.282,
+        "mae_std": 0.2698,
+        "rmse_mean": 3.0359,
+        "rmse_std": 0.4086,
+        "r2_mean": 0.341,
+        "r2_std": 0.2365
+      }
+    }
+  }
+}
