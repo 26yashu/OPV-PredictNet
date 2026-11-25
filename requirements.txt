@@ -1,0 +1,3 @@
+# OPV-PredictNet — Root Python Dependencies
+# References backend/requirements.txt for installation from repository root.
+-r backend/requirements.txt
