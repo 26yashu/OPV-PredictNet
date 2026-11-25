@@ -87,3 +87,18 @@ desktop.ini
 .idea/
 *.swp
 *~
+
+# Local plotting cache
+.matplotlib/
+
+
+# Temporary report inspection files
+
+# Temporary report inspection files
+scripts/extracted_old_report.txt
+scripts/extracted_template.txt
+scripts/dump_old_report.py
+scripts/dump_template.py
+scripts/find_1330.py
+scripts/inspect_headings.py
+scripts/inspect_templates.py
